@@ -33,11 +33,8 @@ Just run:
 make build
 ```
 
-Then go to `http://localhost:8030/health-check` to check Api is ok.
+Then go to `http://localhost:8030/health-check` to check Portal is ok.
 <br>
-Then go to `http://localhost:8031/health-check` to check Engine is ok.
-<br>
-Then go to `http://localhost:8032/health-check` to check Fetcher is ok.
 
 ## Contributing
 There are some things missing feel free to add this if you want! If you want
