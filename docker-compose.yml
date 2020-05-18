@@ -10,6 +10,8 @@ services:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     command: ["--default-authentication-plugin=mysql_native_password"]
+    volumes:
+      - ./databases/data/portal:/var/lib/mysql
 
   nginx-portal:
     container_name: myfinance3-nginx-portal
