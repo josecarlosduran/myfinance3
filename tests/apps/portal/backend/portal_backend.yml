@@ -1,0 +1,18 @@
+portal_backend:
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: Myfinance\Apps\Portal\Backend\PortalBackendKernel
+      bootstrap: apps/bootstrap.php
+    Behat\MinkExtension:
+      sessions:
+        symfony:
+          symfony: ~
+      base_url: ''
+
+  suites:
+    health_check:
+      paths: [ tests/apps/portal/backend/features/health_check ]
+      contexts:
+        - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
+

@@ -11,7 +11,7 @@ use Myfinance\Tests\Shared\Infrastructure\Mink\MinkHelper;
 use Myfinance\Tests\Shared\Infrastructure\Mink\MinkSessionRequestHelper;
 use RuntimeException;
 
-final class ApiContext extends RawMinkContext
+final class PortalContext extends RawMinkContext
 {
     private $sessionHelper;
     private $minkSession;
