@@ -1,0 +1,67 @@
+imports:
+  - { resource: ../../../../src/Portal/Shared/Infrastructure/Symfony/DependencyInjection/portal_services.yaml }
+
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  # Configure
+  _instanceof:
+    Myfinance\Shared\Domain\Bus\Event\DomainEventSubscriber:
+      tags: ['codely.domain_event_subscriber']
+
+    Myfinance\Shared\Domain\Bus\Command\CommandHandler:
+      tags: ['codely.command_handler']
+
+    Myfinance\Shared\Domain\Bus\Query\QueryHandler:
+      tags: ['codely.query_handler']
+
+  Myfinance\Apps\Portal\Backend\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
+
+
+  # Wire
+  Myfinance\Shared\:
+    resource: '../../../../src/Shared'
+
+  Myfinance\Portal\:
+    resource: '../../../../src/Portal'
+
+  # -- TAGGING --
+  Myfinance\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
+    arguments: [!tagged codely.domain_event_subscriber]
+    lazy: true
+
+  Myfinance\Shared\Infrastructure\Bus\Event\DomainEventMapping:
+    arguments: [!tagged codely.domain_event_subscriber]
+
+  Myfinance\Shared\Infrastructure\Bus\Event\DomainEventSubscriberLocator:
+    arguments: [!tagged codely.domain_event_subscriber]
+
+  Myfinance\Shared\Infrastructure\Doctrine\DatabaseConnections:
+    arguments: [!tagged Myfinance.database_connection]
+
+  Myfinance\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+  Myfinance\Shared\Infrastructure\Symfony\ApiExceptionListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.exception, method: onException }
+
+
+  # -- APP DEFINITIONS --
+  # Command/Query Handlers
+  Myfinance\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+    arguments: [!tagged codely.command_handler]
+
+  Myfinance\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+    arguments: [!tagged codely.query_handler]
+
+
+
+
+  # -- IMPLEMENTATIONS SELECTOR --
+  Myfinance\Shared\Domain\Bus\Event\EventBus: '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'

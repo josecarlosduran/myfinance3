@@ -1,0 +1,52 @@
+{
+  "name": "Myfinance/Myfinance",
+  "license": "MIT",
+  "type": "project",
+  "description": "Myfinance - Monorepository",
+  "require": {
+    "php": "^7.4",
+
+    "ext-amqp": "*",
+    "ext-apcu": "*",
+    "ext-json": "*",
+    "ext-zend-opcache": "*",
+    "ext-pdo": "*",
+
+    "symfony/framework-bundle": "^5.0",
+    "symfony/messenger": "^5.0",
+    "symfony/dotenv": "^5.0",
+    "symfony/yaml": "^5.0",
+    "symfony/twig-bundle": "^5.0",
+    "symfony/validator": "^5.0",
+
+    "lambdish/phunctional": "^2.0",
+
+    "ramsey/uuid": "^3.8",
+
+    "doctrine/dbal": "^2.9",
+    "doctrine/orm": "^2.6",
+    "ocramius/proxy-manager": "2.2.2",
+
+    "elasticsearch/elasticsearch": "^7.3",
+    "monolog/monolog": "^2.0"
+  },
+  "require-dev": {
+    "ext-xdebug": "*",
+    "roave/security-advisories": "dev-master",
+    "phpunit/phpunit": "^8.2",
+    "mockery/mockery": "^1.2",
+    "fzaninotto/faker": "^1.8"
+
+  },
+  "autoload": {
+    "psr-4": {
+      "Myfinance\\Apps\\Portal\\Backend\\": "apps/Portal/backend/src",
+      "Myfinance\\": ["src"]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Myfinance\\Tests\\": ["tests/src"]
+    }
+  }
+}

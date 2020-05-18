@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: myfinance3-db
+    image: mysql:8
+    ports:
+      - "3360:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    command: ["--default-authentication-plugin=mysql_native_password"]
+
+  nginx-portal:
+    container_name: myfinance3-nginx-portal
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    ports:
+      - "8030:80"
+    volumes:
+      - .:/app:delegated
+      - ./etc/infrastructure/nginx/portal/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+
+  php:
+    container_name: myfinance3-php
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "9090:9001"
+    volumes:
+      - .:/app:delegated
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
