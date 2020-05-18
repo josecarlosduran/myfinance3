@@ -3,6 +3,7 @@
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 build: deps start
+rebuild: deps_rebuild start
 
 deps: composer-install
 deps_rebuild: composer-update
