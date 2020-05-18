@@ -37,7 +37,10 @@
     "mockery/mockery": "^1.2",
     "fzaninotto/faker": "^1.8",
 
-    "behat/behat": "3.6.1"
+    "behat/behat": "3.6.1",
+    "friends-of-behat/symfony-extension": "2.1.0",
+    "friends-of-behat/mink-extension": "2.4.0",
+    "friends-of-behat/mink-browserkit-driver": "1.4.0"
 
 
   },
