@@ -29,8 +29,8 @@ final class ApplicationFeatureContext implements Context
     /** @BeforeScenario */
     public function cleanEnvironment(): void
     {
-        $this->connections->clear();
-        $this->connections->truncate();
+        //$this->connections->clear();
+        //$this->connections->truncate();
     }
 
     /**

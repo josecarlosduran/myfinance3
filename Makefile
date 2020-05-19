@@ -25,9 +25,21 @@ test:
 	@docker exec myfinance3-php make run-tests
 
 run-tests:
+	make unit-test
+	make acceptance-test
+
+test-unit:
+	@docker exec myfinance3-php make run-tests-unit
+
+run-tests-unit:
+	make unit-test
+
+unit-test:
 	mkdir -p build/test_results/phpunit
-	./vendor/bin/phpunit --exclude-group='disabled' --log-junit build/test_results/phpunit/junit.xml tests
-	./vendor/bin/behat -p portal_backend --format=progress -v
+	./vendor/bin/phpunit --exclude-group='disabled' --colors=always --log-junit build/test_results/phpunit/junit.xml tests
+
+acceptance-test:
+	./vendor/bin/behat -p portal_backend -v --colors
 
 # 🐳 Docker Compose
 start: CMD=up -d

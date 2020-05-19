@@ -15,4 +15,12 @@ portal_backend:
       paths: [ tests/apps/portal/backend/features/health_check ]
       contexts:
         - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
+        - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
+
+    categories:
+      paths: [ tests/apps/portal/backend/features/categories ]
+      contexts:
+        - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
+        - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
+
 

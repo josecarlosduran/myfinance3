@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid as RamseyUuid;
 
 class Uuid
 {
-    protected $value;
+    protected string $value;
 
     public function __construct(string $value)
     {

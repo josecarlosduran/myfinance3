@@ -1,0 +1,4 @@
+categories_put:
+    path: /categories/{id}
+    controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesPutController
+    methods:  [PUT]

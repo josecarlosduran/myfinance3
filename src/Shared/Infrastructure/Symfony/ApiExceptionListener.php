@@ -6,9 +6,9 @@ namespace Myfinance\Shared\Infrastructure\Symfony;
 
 use Myfinance\Shared\Domain\DomainError;
 use Myfinance\Shared\Domain\Utils;
-use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Throwable;
 
 final class ApiExceptionListener
 {
@@ -19,14 +19,13 @@ final class ApiExceptionListener
         $this->exceptionHandler = $exceptionHandler;
     }
 
-    public function onException(RequestEvent $event): void
+    public function onException(ExceptionEvent $event): void
     {
-        $exception = $event->getException();
-
+        $exception = $event->getThrowable();
         $event->setResponse(
             new JsonResponse(
                 [
-                    'code'    => $this->exceptionCodeFor($exception),
+                    'code' => $this->exceptionCodeFor($exception),
                     'message' => $exception->getMessage(),
                 ],
                 $this->exceptionHandler->statusCodeFor(get_class($exception))
@@ -34,10 +33,10 @@ final class ApiExceptionListener
         );
     }
 
-    private function exceptionCodeFor(Exception $error)
+    private function exceptionCodeFor(Throwable $error)
     {
         $domainErrorClass = DomainError::class;
-
-        return $error instanceof $domainErrorClass ? $error->errorCode() : Utils::toSnakeCase(class_basename($error));
+        echo $error->getMessage();
+        return $error instanceof $domainErrorClass ? $error->errorCode() : Utils::toSnakeCase(get_class($error));
     }
 }
