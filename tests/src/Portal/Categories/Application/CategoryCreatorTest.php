@@ -7,11 +7,8 @@ namespace Myfinance\Tests\Portal\Categories\Application;
 
 use Myfinance\Portal\Categories\Application\CategoryCreator;
 use Myfinance\Portal\Categories\Application\CreateCategoryRequest;
-use Myfinance\Portal\Categories\Domain\Category;
-use Myfinance\Portal\Categories\Domain\CategoryDescription;
 use Myfinance\Portal\Categories\Domain\CategoryRepository;
-use Myfinance\Portal\Shared\Domain\Category\CategoryId;
-use Myfinance\Shared\Domain\ValueObject\Uuid;
+use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;
 use PHPUnit\Framework\TestCase;
 
 final class CategoryCreatorTest extends TestCase
@@ -23,13 +20,10 @@ final class CategoryCreatorTest extends TestCase
 
         $creator = new CategoryCreator($repository);
 
-        $id          = new CategoryId(Uuid::random()->value());
-        $description = new CategoryDescription('some-description');
-
-        $category = new Category($id, $description);
+        $category = CategoryMother::random();
         $repository->method('save')->with($category);
 
-        $creator->__invoke(new CreateCategoryRequest($id->value(), $description->value()));
+        $creator->__invoke(new CreateCategoryRequest($category->id()->value(), $category->description()->value()));
     }
 
 }

@@ -6,11 +6,8 @@ declare(strict_types=1);
 namespace Myfinance\Tests\Portal\Categories\Infrastructure\File;
 
 
-use Myfinance\Portal\Categories\Domain\Category;
-use Myfinance\Portal\Categories\Domain\CategoryDescription;
 use Myfinance\Portal\Categories\Infrastructure\File\FileCategoryRepository;
-use Myfinance\Portal\Shared\Domain\Category\CategoryId;
-use Myfinance\Shared\Domain\ValueObject\Uuid;
+use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;
 use PHPUnit\Framework\TestCase;
 
 final class FileCategoryRepositoryTest extends TestCase
@@ -20,7 +17,7 @@ final class FileCategoryRepositoryTest extends TestCase
     public function it_should_save_a_category()
     {
         $repository = new FileCategoryRepository();
-        $category   = new Category(new CategoryId(Uuid::random()->value()), new CategoryDescription('description'));
+        $category   = CategoryMother::random();
 
         $repository->save($category);
 
@@ -31,7 +28,7 @@ final class FileCategoryRepositoryTest extends TestCase
 
     {
         $repository = new FileCategoryRepository();
-        $category   = new Category(new CategoryId(Uuid::random()->value()), new CategoryDescription('description'));
+        $category   = CategoryMother::random();
 
         $repository->save($category);
 
@@ -43,7 +40,7 @@ final class FileCategoryRepositoryTest extends TestCase
 
     {
         $repository = new FileCategoryRepository();
-        $category   = new Category(new CategoryId(Uuid::random()->value()), new CategoryDescription('description'));
+        $category   = CategoryMother::random();
 
         $this->assertEquals(null, $repository->search($category->id()));
 
