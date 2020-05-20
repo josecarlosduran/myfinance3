@@ -17,3 +17,5 @@ RUN apk --update upgrade \
         opcache
 
 COPY etc/infrastructure/php/ /usr/local/etc/php/
+
+RUN chmod 777 /var/log

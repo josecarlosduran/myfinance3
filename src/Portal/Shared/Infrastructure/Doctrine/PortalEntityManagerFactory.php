@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Myfinance\Portal\Shared\Infrastructure\Doctrine;
 
@@ -15,12 +15,8 @@ final class PortalEntityManagerFactory
     {
         $isDevMode = 'prod' !== $environment;
 
-        $prefixes = array_merge(
-            DoctrinePrefixesSearcher::inPath(__DIR__ . '/../../../../Portal', 'Myfinance\Portal'),
-            DoctrinePrefixesSearcher::inPath(__DIR__ . '/../../../../Backoffice', 'Myfinance\Backoffice')
-        );
-
-        $dbalCustomTypesClasses = DbalTypesSearcher::inPath(__DIR__ . '/../../../../Portal', 'Api');
+        $prefixes               = DoctrinePrefixesSearcher::inPath(__DIR__ . '/../../../../Portal', 'Myfinance\Portal');
+        $dbalCustomTypesClasses = DbalTypesSearcher::inPath(__DIR__ . '/../../../../Portal', 'Portal');
 
         return DoctrineEntityManagerFactory::create(
             $parameters,
