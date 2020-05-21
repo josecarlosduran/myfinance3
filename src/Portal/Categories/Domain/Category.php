@@ -20,6 +20,16 @@ final class Category extends AggregateRoot
         $this->description = $description;
     }
 
+    public static function create(CategoryId $id, CategoryDescription $description): self
+    {
+        $category = new self($id, $description);
+
+        $category->record(new CategoryCreatedDomainEvent($id->value(), $description->value()));
+
+        return $category;
+    }
+
+
     public function id(): CategoryId
     {
         return $this->id;

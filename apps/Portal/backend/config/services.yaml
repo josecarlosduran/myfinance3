@@ -64,4 +64,4 @@ services:
 
 
   # -- IMPLEMENTATIONS SELECTOR --
-  Myfinance\Shared\Domain\Bus\Event\EventBus: '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'
+  Myfinance\Shared\Domain\Bus\Event\EventBus: '@Myfinance\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus'

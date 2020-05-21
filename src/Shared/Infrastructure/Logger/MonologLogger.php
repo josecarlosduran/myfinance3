@@ -4,15 +4,19 @@ declare(strict_types = 1);
 
 namespace Myfinance\Shared\Infrastructure\Logger;
 
+use Monolog\Handler\StreamHandler;
 use Myfinance\Shared\Domain\Logger;
 
 final class MonologLogger implements Logger
 {
     private $logger;
 
-    public function __construct(\Monolog\Logger $logger)
+    public function __construct()
     {
-        $this->logger = $logger;
+
+        $this->logger = new \Monolog\logger('test');
+        $this->logger->pushHandler(new StreamHandler(__DIR__ . '/../../../../eventStore/events.log',
+            \Monolog\Logger::DEBUG));
     }
 
     public function info(string $message, array $context = []): void

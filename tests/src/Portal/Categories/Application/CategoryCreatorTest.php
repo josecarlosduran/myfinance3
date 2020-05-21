@@ -15,7 +15,7 @@ final class CategoryCreatorTest extends CategoriesModuleUnitTestCase
 
     protected function setUp(): void
     {
-        $this->creator = new CategoryCreator($this->repository());
+        $this->creator = new CategoryCreator($this->repository(), $this->eventBus());
     }
 
     /** @test */

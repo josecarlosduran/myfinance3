@@ -38,6 +38,11 @@ unit-test:
 	mkdir -p build/test_results/phpunit
 	./vendor/bin/phpunit --exclude-group='disabled' --colors=always --log-junit build/test_results/phpunit/junit.xml tests
 
+test-acceptance:
+	@docker exec myfinance3-php make run-tests-acceptance
+
+run-tests-acceptance:
+	make acceptance-test
 acceptance-test:
 	./vendor/bin/behat -p portal_backend -v --colors
 
