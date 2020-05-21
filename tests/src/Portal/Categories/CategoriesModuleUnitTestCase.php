@@ -6,33 +6,29 @@ declare(strict_types=1);
 namespace Myfinance\Tests\Portal\Categories;
 
 
+use Mockery\MockInterface;
 use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Portal\Categories\Domain\CategoryRepository;
-use Myfinance\Shared\Domain\Bus\Event\EventBus;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
+use Myfinance\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 
-abstract class CategoriesModuleUnitTestCase extends TestCase
+abstract class CategoriesModuleUnitTestCase extends UnitTestCase
 {
     private $repository;
-    private $bus;
 
     protected function shouldSave(Category $category): void
     {
-        $this->repository()->method('save')->withAnyParameters();
+        $this->repository()
+             ->shouldReceive('save')
+             ->once()
+             ->with($this->similarTo($category))
+             ->andReturnNull();
     }
 
-    /** @return CategoryRepository|MockObject */
-    protected function repository(): MockObject
+    /** @return CategoryRepository|MockInterface */
+    protected function repository(): MockInterface
     {
-        return $this->repository = $this->repository ?: $this->createMock(CategoryRepository::class);
+        return $this->repository = $this->repository ?: $this->mock(CategoryRepository::class);
 
     }
 
-    /** @return EventBus|MockObject */
-    protected function eventBus(): EventBus
-    {
-        return $this->bus = $this->bus ?: $this->createMock(EventBus::class);
-
-    }
 }
