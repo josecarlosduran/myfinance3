@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Tests\Portal\Categories\Infrastructure\File;
+namespace Myfinance\Tests\Portal\Categories\Infrastructure\Persistence;
 
 
-use Myfinance\Portal\Categories\Infrastructure\File\FileCategoryRepository;
+use Myfinance\Portal\Categories\Infrastructure\Persistence\FileCategoryRepository;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;
 use PHPUnit\Framework\TestCase;
 

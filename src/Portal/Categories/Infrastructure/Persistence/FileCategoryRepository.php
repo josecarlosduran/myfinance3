@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Portal\Categories\Infrastructure\File;
+namespace Myfinance\Portal\Categories\Infrastructure\Persistence;
 
 
 use Myfinance\Portal\Categories\Domain\Category;
@@ -13,7 +13,7 @@ use Myfinance\Portal\Shared\Domain\Category\CategoryId;
 final class FileCategoryRepository implements CategoryRepository
 {
 
-    const FILE_PATH = __DIR__ . '/categories';
+    const FILE_PATH = __DIR__ . '/file_repo/categories';
 
 
     public function save(Category $category): void

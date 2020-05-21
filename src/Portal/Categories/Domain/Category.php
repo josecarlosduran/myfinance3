@@ -7,8 +7,9 @@ namespace Myfinance\Portal\Categories\Domain;
 
 
 use Myfinance\Portal\Shared\Domain\Category\CategoryId;
+use Myfinance\Shared\Domain\Aggregate\AggregateRoot;
 
-final class Category
+final class Category extends AggregateRoot
 {
     private CategoryId          $id;
     private CategoryDescription $description;

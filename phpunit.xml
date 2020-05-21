@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--suppress XmlDefaultAttributeValue -->
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
@@ -24,7 +25,7 @@
 
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_CLASS" value="Myfinance\Apps\Api\Backend\MoocBackendKernel" />
+        <server name="KERNEL_CLASS" value="Myfinance\Apps\Portal\Backend\PortalBackendKernel"/>
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
         <env name="APP_ENV" value="test"/>
     </php>
