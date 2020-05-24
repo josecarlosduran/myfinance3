@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use Myfinance\Apps\Api\Backend\PortalBackendKernel;
+use Myfinance\Apps\Portal\Backend\PortalBackendKernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\ErrorHandler\Debug;

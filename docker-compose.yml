@@ -40,3 +40,14 @@ services:
     depends_on:
       - mysql
 
+  rabbitmq:
+    container_name: myfinance3-rabbitmq
+    image: 'library/rabbitmq:3.7-management'
+    restart: unless-stopped
+    ports:
+      - 5530:5672
+      - 8090:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=myfinance
+      - RABBITMQ_DEFAULT_PASS=muf1n4nc3
+

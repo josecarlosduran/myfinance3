@@ -34,6 +34,7 @@ test-unit:
 run-tests-unit:
 	make unit-test
 
+
 unit-test:
 	mkdir -p build/test_results/phpunit
 	./vendor/bin/phpunit --exclude-group='disabled' --colors=always --log-junit build/test_results/phpunit/junit.xml tests
@@ -43,6 +44,7 @@ test-acceptance:
 
 run-tests-acceptance:
 	make acceptance-test
+
 acceptance-test:
 	./vendor/bin/behat -p portal_backend -v --colors
 
@@ -60,5 +62,12 @@ rebuild:
 	docker-compose build --pull --force-rm --no-cache
 	make deps_rebuild
 	make start
+
+consume-mysql:
+	@docker exec myfinance3-php make consume_mysql_command
+consume_mysql_command:
+	php /app/apps/Portal/backend/bin/console Myfinance:domain-events:mysql:consume 200
+
+
 
 
