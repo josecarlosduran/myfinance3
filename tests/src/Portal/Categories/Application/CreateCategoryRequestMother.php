@@ -18,6 +18,11 @@ final class CreateCategoryRequestMother
         return new CreateCategoryRequest($id->value(), $description->value());
     }
 
+    public static function withDescriptionLongerThanMaxLength(): CreateCategoryRequest
+    {
+        return self::create(CategoryIdMother::random(), CategoryDescriptionMother::withLengthLongerThanMaxLength());
+    }
+
     public static function random(): CreateCategoryRequest
     {
         return self::create(CategoryIdMother::random(), CategoryDescriptionMother::random());

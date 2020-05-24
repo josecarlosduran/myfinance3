@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Myfinance\Shared\Domain\ValueObject;
 
-use InvalidArgumentException;
 use Ramsey\Uuid\Uuid as RamseyUuid;
 
 class Uuid
@@ -31,7 +30,7 @@ class Uuid
     private function ensureIsValidUuid($id): void
     {
         if (!RamseyUuid::isValid($id)) {
-            throw new InvalidArgumentException(sprintf('<%s> does not allow the value <%s>.', static::class, $id));
+            throw new UuiNotValid($id);
         }
     }
 

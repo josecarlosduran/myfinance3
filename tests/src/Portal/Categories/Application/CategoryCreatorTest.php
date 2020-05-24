@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Myfinance\Tests\Portal\Categories\Application;
 
+use InvalidArgumentException;
 use Myfinance\Portal\Categories\Application\CategoryCreator;
-use Myfinance\Portal\Categories\Application\CreateCategoryRequest;
 use Myfinance\Tests\Portal\Categories\CategoriesModuleUnitTestCase;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryCreatedDomainEventMother;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;
@@ -28,8 +28,9 @@ final class CategoryCreatorTest extends CategoriesModuleUnitTestCase
 
         $this->shouldSave($category);
         $this->shouldPublishDomainEvent($categoryCreatedDomainEvent);
-        $this->creator->__invoke(new CreateCategoryRequest($category->id()->value(),
-            $category->description()->value()));
+
+        $this->creator->__invoke($createCategoryRequest);
     }
+
 
 }

@@ -12,3 +12,14 @@ Feature: Create a new category
     """
     Then the response status code should be 201
     And the response should be empty
+
+
+  Scenario: A valid not existing category with a description with more than 30 characters
+    Given I send a PUT request to "/categories/839d13db-e048-4050-a5ed-f1355791368a" with body:
+    """
+    {
+      "description": "Test Category with more than 30 characters"
+    }
+    """
+    Then the response status code should be 400
+

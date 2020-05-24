@@ -14,7 +14,7 @@ final class MonologLogger implements Logger
     public function __construct()
     {
 
-        $this->logger = new \Monolog\logger('test');
+        $this->logger = new \Monolog\Logger('test');
         $this->logger->pushHandler(new StreamHandler(__DIR__ . '/../../../../eventStore/events.log',
             \Monolog\Logger::DEBUG));
     }
