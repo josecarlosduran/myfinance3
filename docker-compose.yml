@@ -40,6 +40,23 @@ services:
     depends_on:
       - mysql
 
+  supervisor:
+    container_name: myfinance3-supervisor-php
+    build:
+      context: .
+      dockerfile: Dockerfile-supervisor
+    restart: unless-stopped
+    ports:
+      - "9099:9001"
+    volumes:
+      - .:/app:delegated
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+
+
+
   rabbitmq:
     container_name: myfinance3-rabbitmq
     image: 'library/rabbitmq:3.7-management'

@@ -81,6 +81,14 @@ services:
   Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
     arguments: ['@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%']
 
+  Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqDomainEventsConsumer:
+    arguments:
+      - '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection'
+      - '@Myfinance\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer'
+      - '%env(RABBITMQ_EXCHANGE)%'
+      - '%env(RABBITMQ_MAX_RETRIES)%'
+
+
   Myfinance\Apps\Portal\Backend\Command\DomainEvents\RabbitMq\ConfigureRabbitMqCommand:
     arguments:
       - '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConfigurer'
@@ -90,3 +98,4 @@ services:
 
   # -- IMPLEMENTATIONS SELECTOR --
   Myfinance\Shared\Domain\Bus\Event\EventBus: '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'
+  Myfinance\Portal\Categories\Domain\CategoryRepository: '@Myfinance\Portal\Categories\Infrastructure\Persistence\DoctrineCategoryRepository'

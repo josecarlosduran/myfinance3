@@ -63,11 +63,18 @@ rebuild:
 	make deps_rebuild
 	make start
 
+configure-rabbitMQ:
+	@docker exec myfinance3-php make configure_rabbitMQ_command
+configure_rabbitMQ_command:
+	php /app/apps/Portal/backend/bin/console Myfinance:domain-events:rabbitmq:configure
+
+
 consume-mysql:
 	@docker exec myfinance3-php make consume_mysql_command
 consume_mysql_command:
 	php /app/apps/Portal/backend/bin/console Myfinance:domain-events:mysql:consume 200
 
-
+reload-supervisor:
+	@docker exec myfinance3-supervisor-php supervisorctl reload
 
 
