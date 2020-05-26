@@ -23,10 +23,8 @@ final class CategoryCreator
         $this->bus        = $bus;
     }
 
-    public function __invoke(CreateCategoryRequest $request): void
+    public function __invoke(CategoryId $id, CategoryDescription $description): void
     {
-        $id          = new CategoryId($request->id());
-        $description = new CategoryDescription($request->description());
 
         $category = Category::create($id, $description);
 

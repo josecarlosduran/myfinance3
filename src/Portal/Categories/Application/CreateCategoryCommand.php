@@ -6,7 +6,9 @@ declare(strict_types=1);
 namespace Myfinance\Portal\Categories\Application;
 
 
-final class CreateCategoryRequest
+use Myfinance\Shared\Domain\Bus\Command\Command;
+
+final class CreateCategoryCommand implements Command
 {
 
     private string $id;

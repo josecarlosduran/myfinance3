@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Myfinance\Tests\Portal\Categories\Domain;
 
 
-use Myfinance\Portal\Categories\Application\CreateCategoryRequest;
+use Myfinance\Portal\Categories\Application\CreateCategoryCommand;
 use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Portal\Categories\Domain\CategoryDescription;
 use Myfinance\Portal\Shared\Domain\Category\CategoryId;
@@ -18,7 +18,7 @@ final class CategoryMother
         return new Category($id, $description);
     }
 
-    public static function fromRequest(CreateCategoryRequest $request): Category
+    public static function fromCommand(CreateCategoryCommand $request): Category
     {
         return self::create(
             CategoryIdMother::create($request->id()),
