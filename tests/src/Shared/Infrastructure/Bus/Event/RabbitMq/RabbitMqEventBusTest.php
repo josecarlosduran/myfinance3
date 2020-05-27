@@ -17,6 +17,9 @@ use Myfinance\Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 use RuntimeException;
 use Throwable;
 
+/**
+ * @group integration
+ */
 final class RabbitMqEventBusTest extends InfrastructureTestCase
 {
     private $connection;

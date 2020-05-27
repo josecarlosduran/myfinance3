@@ -10,8 +10,12 @@ use Myfinance\Tests\Portal\Categories\CategoriesModuleUnitTestCase;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryCreatedDomainEventMother;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;
 
+/**
+ * @group unit
+ */
 final class CreateCategoryCommandHandlerTest extends CategoriesModuleUnitTestCase
 {
+
     private CreateCategoryCommandHandler $handler;
 
     protected function setUp(): void

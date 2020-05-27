@@ -2,3 +2,8 @@ categories_put:
     path: /categories/{id}
     controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesPutController
     methods:  [PUT]
+
+categories_get:
+    path: /categories/{id}
+    controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetController
+    methods:  [GET]

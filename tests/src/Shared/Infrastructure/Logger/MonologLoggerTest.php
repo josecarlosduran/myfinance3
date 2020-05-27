@@ -5,7 +5,9 @@ namespace Myfinance\Tests\Shared\Infrastructure\Logger;
 
 use Myfinance\Shared\Infrastructure\Logger\MonologLogger;
 use Myfinance\Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
-
+/**
+ * @group integration
+ */
 class MonologLoggerTest extends InfrastructureTestCase
 {
     /** @test */

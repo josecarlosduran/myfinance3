@@ -11,7 +11,9 @@ use Myfinance\Shared\Infrastructure\Bus\Event\MySql\MySqlDoctrineEventBus;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryCreatedDomainEventMother;
 use Myfinance\Tests\Shared\Infrastructure\PhpUnit\InfrastructureTestCase;
 use Doctrine\ORM\EntityManager;
-
+/**
+ * @group integration
+ */
 final class MySqlDoctrineEventBusTest extends InfrastructureTestCase
 {
     private $bus;

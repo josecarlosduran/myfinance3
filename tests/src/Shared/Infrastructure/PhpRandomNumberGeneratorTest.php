@@ -4,7 +4,9 @@ namespace Myfinance\Tests\Shared\Infrastructure;
 
 use Myfinance\Shared\Infrastructure\PhpRandomNumberGenerator;
 use PHPUnit\Framework\TestCase;
-
+/**
+ * @group unit
+ */
 class PhpRandomNumberGeneratorTest extends TestCase
 {
     /** @test */

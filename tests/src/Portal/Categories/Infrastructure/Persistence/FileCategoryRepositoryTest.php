@@ -9,7 +9,9 @@ namespace Myfinance\Tests\Portal\Categories\Infrastructure\Persistence;
 use Myfinance\Portal\Categories\Infrastructure\Persistence\FileCategoryRepository;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;
 use PHPUnit\Framework\TestCase;
-
+/**
+ * @group integration
+ */
 final class FileCategoryRepositoryTest extends TestCase
 {
 

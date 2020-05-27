@@ -37,7 +37,19 @@ run-tests-unit:
 
 unit-test:
 	mkdir -p build/test_results/phpunit
-	./vendor/bin/phpunit --exclude-group='disabled' --colors=always --log-junit build/test_results/phpunit/junit.xml tests
+	./vendor/bin/phpunit --exclude-group='disabled' --group='unit' --colors=always --log-junit build/test_results/phpunit/junit.xml
+
+test-integration:
+	@docker exec myfinance3-php make run-tests-integration
+
+run-tests-integration:
+	make integration-test
+
+
+integration-test:
+	mkdir -p build/test_results/phpunit
+	./vendor/bin/phpunit --exclude-group='disabled' --group='integration' --colors=always --log-junit build/test_results/phpunit/junit.xml
+
 
 test-acceptance:
 	@docker exec myfinance3-php make run-tests-acceptance

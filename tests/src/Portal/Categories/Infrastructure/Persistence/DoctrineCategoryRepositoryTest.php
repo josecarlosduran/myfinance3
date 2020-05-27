@@ -7,7 +7,9 @@ namespace Myfinance\Tests\Portal\Categories\Infrastructure\Persistence;
 use Myfinance\Tests\Portal\Categories\CategoriesModuleInfrastructureTestCase;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryIdMother;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;
-
+/**
+ * @group integration
+ */
 final class DoctrineCategoryRepositoryTest extends CategoriesModuleInfrastructureTestCase
 {
     /** @test */
