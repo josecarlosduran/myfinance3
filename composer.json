@@ -18,17 +18,14 @@
     "symfony/yaml": "^5.0",
     "symfony/twig-bundle": "^5.0",
     "symfony/validator": "^5.0",
-
     "lambdish/phunctional": "^2.0",
-
     "ramsey/uuid": "^3.8",
-
     "doctrine/dbal": "^2.9",
     "doctrine/orm": "^2.6",
     "ocramius/proxy-manager": "2.8",
-
     "elasticsearch/elasticsearch": "^7.3",
-    "monolog/monolog": "^2.0"
+    "monolog/monolog": "^2.0",
+    "symfony/monolog-bundle": "^3.5"
   },
   "require-dev": {
     "ext-xdebug": "*",
@@ -47,7 +44,10 @@
   "autoload": {
     "psr-4": {
       "Myfinance\\Apps\\Portal\\Backend\\": "apps/Portal/backend/src",
-      "Myfinance\\": ["src"]
+      "Myfinance\\Apps\\Portal\\Frontend\\": "apps/Portal/frontend/src",
+      "Myfinance\\": [
+        "src"
+      ]
     }
   },
   "autoload-dev": {
