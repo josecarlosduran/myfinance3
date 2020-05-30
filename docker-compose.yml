@@ -25,6 +25,19 @@ services:
     depends_on:
       - php
 
+  nginx-portal-frontend:
+    container_name: myfinance3-nginx-portal-frontend
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    ports:
+      - "8040:80"
+    volumes:
+      - .:/app:delegated
+      - ./etc/infrastructure/nginx/portal-frontend/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+
+
   php:
     container_name: myfinance3-php
     build:

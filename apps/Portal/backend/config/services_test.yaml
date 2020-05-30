@@ -11,5 +11,4 @@ services:
     resource: '../../../../tests/src'
 
 # Instance selector
-  Myfinance\Shared\Domain\RandomNumberGenerator: '@Myfinance\Tests\Shared\Infrastructure\ConstantRandomNumberGenerator'
   Myfinance\Portal\Categories\Domain\CategoryRepository: '@Myfinance\Portal\Categories\Infrastructure\Persistence\DoctrineCategoryRepository'

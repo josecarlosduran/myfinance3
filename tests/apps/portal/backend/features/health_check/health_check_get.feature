@@ -8,7 +8,6 @@ Feature: Api status
     Then the response content should be:
     """
     {
-      "portal-backend": "ok",
-      "rand": 1
+      "portal-backend": "ok"
     }
     """

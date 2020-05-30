@@ -40,4 +40,13 @@ final class Category extends AggregateRoot
         return $this->description;
     }
 
+    public function toPrimitives()
+    {
+        return [
+            'id' => $this->id->value(),
+            'description' => $this->description->value(),
+        ];
+    }
+
+
 }

@@ -12,4 +12,6 @@ interface CategoryRepository
     public function save(Category $category): void;
 
     public function search(CategoryId $id): ?Category;
+
+    public function searchAll(): Categories;
 }

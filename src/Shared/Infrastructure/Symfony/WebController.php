@@ -37,6 +37,7 @@ abstract class WebController extends ApiController
 
     public function render(string $templatePath, array $arguments = []): SymfonyResponse
     {
+
         return new SymfonyResponse($this->twig->render($templatePath, $arguments));
     }
 

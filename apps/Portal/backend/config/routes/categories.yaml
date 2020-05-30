@@ -1,9 +1,14 @@
 categories_put:
-    path: /categories/{id}
-    controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesPutController
-    methods:  [PUT]
+  path: /categories/{id}
+  controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesPutController
+  methods:  [PUT]
 
 categories_get:
-    path: /categories/{id}
-    controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetController
-    methods:  [GET]
+  path: /categories/{id}
+  controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetController
+  methods:  [GET]
+
+categories_list:
+  path: /categories
+  controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetAllController
+  methods:  [GET]
