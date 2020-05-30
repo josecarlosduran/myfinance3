@@ -1,0 +1,34 @@
+{% extends 'master.html.twig' %}
+
+{% block section_header_title %}
+    {{ section_title }}
+{% endblock %}
+{% block section_header_action %}
+    <a href="{{ path('new_category_form') }}" class="waves-effect waves-light btn"><i
+                class="material-icons left">add</i>Nueva</a>
+{% endblock %}
+
+{% block main %}
+
+    <table class="highlight">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.description }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

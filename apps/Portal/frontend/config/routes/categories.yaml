@@ -1,0 +1,14 @@
+categories:
+  path: /categories
+  controller: Myfinance\Apps\Portal\Frontend\Controller\Categories\CategoriesGetAllController
+  methods:  [GET]
+
+new_category_form:
+  path: /categories/new
+  controller: Myfinance\Apps\Portal\Frontend\Controller\Categories\NewCategoryFormController
+  methods:  [GET]
+
+new_category:
+  path: /categories
+  controller: Myfinance\Apps\Portal\Frontend\Controller\Categories\CategoriesPostController
+  methods:  [POST]

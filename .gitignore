@@ -13,5 +13,8 @@
 
 *.repo
 /databases/
-
+/elasticsearch/
 *.pid
+
+jquery-3.5.1.js
+materialize.js

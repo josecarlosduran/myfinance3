@@ -1,0 +1,102 @@
+imports:
+  - { resource: ../../../../src/Portal/Shared/Infrastructure/Symfony/DependencyInjection/portal_services.yaml }
+
+
+services:
+  _defaults:
+    autoconfigure: true
+    autowire: true
+
+  # Configure
+  _instanceof:
+    Myfinance\Shared\Domain\Bus\Event\DomainEventSubscriber:
+      tags: ['myfinance.domain_event_subscriber']
+
+    Myfinance\Shared\Domain\Bus\Command\CommandHandler:
+      tags: ['myfinance.command_handler']
+
+    Myfinance\Shared\Domain\Bus\Query\QueryHandler:
+      tags: ['myfinance.query_handler']
+
+  Myfinance\Apps\Portal\Frontend\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
+
+
+  # Wire
+  Myfinance\Shared\:
+    resource: '../../../../src/Shared'
+
+  Myfinance\Portal\:
+    resource: '../../../../src/Portal'
+
+  # -- TAGGING --
+  Myfinance\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
+    arguments: [!tagged myfinance.domain_event_subscriber]
+    lazy: true
+
+  Myfinance\Shared\Infrastructure\Bus\Event\DomainEventMapping:
+    arguments: [!tagged myfinance.domain_event_subscriber]
+
+  Myfinance\Shared\Infrastructure\Bus\Event\DomainEventSubscriberLocator:
+    arguments: [!tagged myfinance.domain_event_subscriber]
+
+  Myfinance\Shared\Infrastructure\Doctrine\DatabaseConnections:
+    arguments: [!tagged Myfinance.database_connection]
+
+  Myfinance\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+
+
+
+  # -- APP DEFINITIONS --
+  # Command/Query Handlers
+  Myfinance\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+    arguments: [!tagged myfinance.command_handler]
+
+  Myfinance\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+    arguments: [!tagged myfinance.query_handler]
+
+
+  # RabbitMQ
+  Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection:
+    arguments:
+      - host: '%env(RABBITMQ_HOST)%'
+        port: '%env(RABBITMQ_PORT)%'
+        vhost: '%env(RABBITMQ_PORTAL_VHOST)%'
+        login: '%env(RABBITMQ_LOGIN)%'
+        password: '%env(RABBITMQ_PASSWORD)%'
+        read_timeout: 2
+        write_timeout: 2
+        connect_timeout: 5
+
+  Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus:
+    arguments: ['@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection', '%env(RABBITMQ_EXCHANGE)%']
+
+  Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqDomainEventsConsumer:
+    arguments:
+      - '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConnection'
+      - '@Myfinance\Shared\Infrastructure\Bus\Event\DomainEventJsonDeserializer'
+      - '%env(RABBITMQ_EXCHANGE)%'
+      - '%env(RABBITMQ_MAX_RETRIES)%'
+
+
+  Myfinance\Apps\Portal\Frontend\Command\DomainEvents\RabbitMq\ConfigureRabbitMqCommand:
+    arguments:
+      - '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqConfigurer'
+      - '%env(RABBITMQ_EXCHANGE)%'
+      - !tagged myfinance.domain_event_subscriber
+
+
+  # -- IMPLEMENTATIONS SELECTOR --
+  Myfinance\Shared\Domain\Bus\Event\EventBus: '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'
+  Myfinance\Portal\Categories\Domain\CategoryRepository: '@Myfinance\Portal\Categories\Infrastructure\Persistence\DoctrineCategoryRepository'
+
+twig:
+  default_path: '%kernel.project_dir%/templates'
+  strict_variables: true
+  globals:
+    flash: '@Myfinance\Shared\Infrastructure\Symfony\FlashSession'
+

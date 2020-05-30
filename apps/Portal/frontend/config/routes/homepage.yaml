@@ -1,0 +1,4 @@
+homepage:
+  path: /
+  controller: Myfinance\Apps\Portal\Frontend\Controller\Home\HomeGetController
+  methods:  [GET]
