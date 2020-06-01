@@ -6,6 +6,7 @@ monolog:
       path: "%kernel.project_dir%/var/log/%kernel.environment%.log"
       # log *all* messages (debug is lowest level)
       level: debug
+      formatter: 'monolog.formatter.json'
 
     syslog_handler:
       type: syslog
