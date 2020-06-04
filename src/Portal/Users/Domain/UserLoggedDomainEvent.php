@@ -9,12 +9,15 @@ use Myfinance\Shared\Domain\Bus\Event\DomainEvent;
 final class UserLoggedDomainEvent extends DomainEvent
 {
 
+    private string $username;
+
     public function __construct(
         string $username,
         string $eventId = null,
         string $occurredOn = null
     ) {
         parent::__construct($username, $eventId, $occurredOn);
+        $this->username = $username;
     }
 
     public static function eventName(): string
@@ -24,7 +27,9 @@ final class UserLoggedDomainEvent extends DomainEvent
 
     public function toPrimitives(): array
     {
-        return [];
+        return [
+            'username' => $this->username
+        ];
     }
 
     public static function fromPrimitives(
