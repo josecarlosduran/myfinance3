@@ -96,6 +96,12 @@ services:
       - !tagged myfinance.domain_event_subscriber
 
 
+  Myfinance\Shared\Infrastructure\FireBaseJWT:
+    arguments:
+      - '%env(JWT_KEY)%'
+      - '%env(JWT_VALIDITY_TIME)%'
+
+
   # -- IMPLEMENTATIONS SELECTOR --
   Myfinance\Shared\Domain\Bus\Event\EventBus: '@Myfinance\Shared\Infrastructure\Bus\Event\RabbitMq\RabbitMqEventBus'
   Myfinance\Portal\Categories\Domain\CategoryRepository: '@Myfinance\Portal\Categories\Infrastructure\Persistence\DoctrineCategoryRepository'

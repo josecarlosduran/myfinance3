@@ -1,0 +1,2 @@
+[2020-06-04T11:46:09.802064+00:00] test.INFO: category.created : {"description":"Test Category"} ["EVENT","PORTAL"] []
+[2020-06-04T11:48:33.187581+00:00] test.INFO: user.logged : [] ["EVENT","PORTAL"] []

@@ -25,7 +25,8 @@
     "ocramius/proxy-manager": "2.8",
     "elasticsearch/elasticsearch": "^7.3",
     "monolog/monolog": "^2.0",
-    "symfony/monolog-bundle": "^3.5"
+    "symfony/monolog-bundle": "^3.5",
+    "firebase/php-jwt": "^5.2"
   },
   "require-dev": {
     "ext-xdebug": "*",

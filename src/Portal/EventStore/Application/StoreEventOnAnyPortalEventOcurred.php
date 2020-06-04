@@ -7,6 +7,7 @@ namespace Myfinance\Portal\EventStore\Application;
 
 
 use Myfinance\Portal\Categories\Domain\CategoryCreatedDomainEvent;
+use Myfinance\Portal\Users\Domain\UserLoggedDomainEvent;
 use Myfinance\Shared\Domain\Bus\Event\DomainEvent;
 use Myfinance\Shared\Domain\Bus\Event\DomainEventSubscriber;
 use Myfinance\Shared\Domain\Logger;
@@ -23,7 +24,10 @@ final class StoreEventOnAnyPortalEventOcurred implements DomainEventSubscriber
 
     public static function subscribedTo(): array
     {
-        return [CategoryCreatedDomainEvent::class];
+        return [
+            CategoryCreatedDomainEvent::class,
+            UserLoggedDomainEvent::class,
+        ];
 
     }
 

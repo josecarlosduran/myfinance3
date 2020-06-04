@@ -23,4 +23,9 @@ portal_backend:
         - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
 
+    login:
+      paths: [ tests/apps/portal/backend/features/login ]
+      contexts:
+        - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
+        - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
 

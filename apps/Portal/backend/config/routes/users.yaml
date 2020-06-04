@@ -1,0 +1,4 @@
+login_post:
+  path: /login
+  controller: Myfinance\Apps\Portal\Backend\Controller\Users\LoginPostController
+  methods:  [POST]
