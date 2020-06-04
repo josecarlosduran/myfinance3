@@ -52,6 +52,10 @@ services:
     tags:
       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
+  Myfinance\Shared\Infrastructure\Symfony\JWTAuthMiddleware:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
   Myfinance\Shared\Infrastructure\Symfony\ApiExceptionListener:
     tags:
       - { name: kernel.event_listener, event: kernel.exception, method: onException }

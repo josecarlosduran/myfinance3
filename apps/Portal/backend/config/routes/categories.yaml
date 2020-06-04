@@ -1,14 +1,17 @@
 categories_put:
   path: /categories/{id}
   controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesPutController
+  defaults: { auth: true}
   methods:  [PUT]
 
 categories_get:
   path: /categories/{id}
   controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetController
+  defaults: { auth: true}
   methods:  [GET]
 
 categories_list:
   path: /categories
   controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetAllController
+  defaults: { auth: true}
   methods:  [GET]

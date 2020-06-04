@@ -30,7 +30,7 @@ final class FireBaseJWT implements JWT
         $payload = [
             'data' => $data,
             'iat' => $actualTime,
-            'nbf' => $expireTime
+            'exp' => $expireTime
         ];
 
         return FireJWT::encode($payload, $this->key);

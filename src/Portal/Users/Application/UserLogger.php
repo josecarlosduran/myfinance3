@@ -39,7 +39,7 @@ final class UserLogger
 
         return $this->jwt->generateToken(
             [
-                'user' => $user->username(),
+                'user' => $user->username()->value(),
             ]
         );
     }
