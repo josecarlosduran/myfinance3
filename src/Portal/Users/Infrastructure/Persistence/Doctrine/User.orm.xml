@@ -10,6 +10,8 @@
                   use-column-prefix="false"/>
         <embedded name="active" class="Myfinance\Portal\Users\Domain\UserActive"
                   use-column-prefix="false"/>
+        <embedded name="role" class="Myfinance\Portal\Users\Domain\UserRole"
+                  use-column-prefix="false"/>
 
 
     </entity>

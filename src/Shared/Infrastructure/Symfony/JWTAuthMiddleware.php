@@ -7,15 +7,14 @@ namespace Myfinance\Shared\Infrastructure\Symfony;
 use Myfinance\Shared\Domain\Bus\Command\CommandBus;
 use Myfinance\Shared\Domain\IncorrectAuthenticationTokenFormat;
 use Myfinance\Shared\Domain\JWT;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Myfinance\Shared\Domain\UserNotAuthorized;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
-use function Lambdish\Phunctional\get;
 
 final class JWTAuthMiddleware
 {
-    private     $bus;
-    private JWT $jwt;
+    private CommandBus $bus;
+    private JWT        $jwt;
+    private array      $decryptedToken;
 
     public function __construct(CommandBus $bus, JWT $jwt)
     {
@@ -25,25 +24,30 @@ final class JWTAuthMiddleware
 
     public function onKernelRequest(RequestEvent $event): void
     {
-        $shouldAuthenticate = $event->getRequest()->attributes->get('auth', false);
 
-        if ($shouldAuthenticate) {
-            $this->ensureExistAuthenticationToken($event);
+        if ($this->userShouldAuthenticate($event)) {
 
-            $token = $this->extractTokenFromHeader($event);
+            $this->AuthenticateUser($event);
 
-            $decryptedToken = $this->jwt->extractInfoFromToken($token);
+            $this->ensureUserAuthorization($event);
 
-            $this->addUserDataToRequest($decryptedToken['data'], $event);
+            $this->addUserDataToRequest($event);
         }
     }
 
-
-    private function addUserDataToRequest(\stdClass $tokenData, RequestEvent $event): void
+    private function userShouldAuthenticate(RequestEvent $event)
     {
-        $event->getRequest()->attributes->set('authenticated_username', $tokenData->user);
+        return $event->getRequest()->attributes->get('auth', false);
     }
 
+    private function AuthenticateUser(RequestEvent $event): void
+    {
+        $this->ensureExistAuthenticationToken($event);
+
+        $token = $this->extractTokenFromHeader($event);
+
+        $this->decryptedToken = $this->jwt->extractInfoFromToken($token);
+    }
 
     private function ensureExistAuthenticationToken(RequestEvent $event): void
     {
@@ -67,5 +71,28 @@ final class JWTAuthMiddleware
         if (count($tokenParts) != 2 or $tokenParts[0] != 'Bearer') {
             throw new IncorrectAuthenticationTokenFormat();
         }
+    }
+
+    private function ensureUserAuthorization(RequestEvent $event): void
+    {
+        $tokenData    = $this->decryptedToken['data'];
+        $rolesGranted = $event->getRequest()->attributes->get('roles', 'ROLE_USER');
+        $rolesGranted = is_array($rolesGranted) ? $rolesGranted : [$rolesGranted];
+
+        $roles = $tokenData->roles;
+
+        $rolesMatched = array_intersect($rolesGranted, $roles);
+        if (count($rolesMatched) == 0) {
+            throw new UserNotAuthorized();
+        }
+
+
+    }
+
+    private function addUserDataToRequest(RequestEvent $event): void
+    {
+        $tokenData = $this->decryptedToken['data'];
+        $event->getRequest()->attributes->set('authenticated_username', $tokenData->user);
+        $event->getRequest()->attributes->set('authenticated_userRoles', $tokenData->roles);
     }
 }

@@ -13,5 +13,5 @@ categories_get:
 categories_list:
   path: /categories
   controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetAllController
-  defaults: { auth: true}
+  defaults: { auth: true, roles: ROLE_ADMIN}
   methods:  [GET]

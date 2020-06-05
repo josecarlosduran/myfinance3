@@ -13,13 +13,15 @@ final class User extends AggregateRoot
     private UserName          $username;
     private EncryptedPassword $password;
     private UserActive        $active;
+    private UserRole          $role;
 
-    public function __construct(UserName $username, EncryptedPassword $password, UserActive $active)
+    public function __construct(UserName $username, EncryptedPassword $password, UserActive $active, UserRole $role)
     {
         $this->username = $username;
         $this->password = $password;
         $this->active   = $active;
 
+        $this->role = $role;
     }
 
     public function authenticate(Credentials $credentials)
@@ -50,6 +52,11 @@ final class User extends AggregateRoot
     public function active(): UserActive
     {
         return $this->active;
+    }
+
+    public function role(): UserRole
+    {
+        return $this->role;
     }
 
 
