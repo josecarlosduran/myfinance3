@@ -3,11 +3,10 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Portal\Categories\Application;
+namespace Myfinance\Portal\Categories\Application\SearchAll;
 
 
 use Myfinance\Portal\Categories\Domain\Categories;
-use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Portal\Categories\Domain\CategoryRepository;
 
 final class AllCategoriesSearcher

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Portal\Users\Application;
+namespace Myfinance\Portal\Users\Application\Log;
 
 
 use Myfinance\Shared\Domain\Bus\Query\Response;

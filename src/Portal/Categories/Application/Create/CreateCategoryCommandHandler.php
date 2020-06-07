@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Portal\Categories\Application;
+namespace Myfinance\Portal\Categories\Application\Create;
 
 
 use Myfinance\Portal\Categories\Domain\CategoryDescription;

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Portal\EventStore\Application;
+namespace Myfinance\Portal\EventStore\Application\Store;
 
 
 use Myfinance\Portal\Categories\Domain\CategoryCreatedDomainEvent;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Myfinance\Apps\Portal\Backend\Controller\Categories;
 
-use Myfinance\Portal\Categories\Application\CreateCategoryCommand;
+use Myfinance\Portal\Categories\Application\Create\CreateCategoryCommand;
 use Myfinance\Portal\Categories\Domain\CategoryDescriptionTooLong;
 use Myfinance\Shared\Domain\Bus\Command\CommandBus;
 use Symfony\Component\HttpFoundation\Request;

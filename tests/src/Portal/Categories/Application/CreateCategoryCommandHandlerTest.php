@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Myfinance\Tests\Portal\Categories\Application;
 
-use Myfinance\Portal\Categories\Application\CategoryCreator;
-use Myfinance\Portal\Categories\Application\CreateCategoryCommandHandler;
+use Myfinance\Portal\Categories\Application\Create\CategoryCreator;
+use Myfinance\Portal\Categories\Application\Create\CreateCategoryCommandHandler;
 use Myfinance\Tests\Portal\Categories\CategoriesModuleUnitTestCase;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryCreatedDomainEventMother;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryMother;

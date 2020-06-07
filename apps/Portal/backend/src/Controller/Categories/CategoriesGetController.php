@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Myfinance\Apps\Portal\Backend\Controller\Categories;
 
-use Myfinance\Portal\Categories\Application\CategoryFinderResponse;
-use Myfinance\Portal\Categories\Application\FindCategoryQuery;
+use Myfinance\Portal\Categories\Application\Find\CategoryFinderResponse;
+use Myfinance\Portal\Categories\Application\Find\FindCategoryQuery;
 use Myfinance\Shared\Domain\Bus\Query\QueryBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

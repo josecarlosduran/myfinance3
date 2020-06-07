@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Portal\Categories\Application;
+namespace Myfinance\Portal\Categories\Application\Create;
 
 
-use Myfinance\Shared\Domain\Bus\Query\Response;
+use Myfinance\Shared\Domain\Bus\Command\Command;
 
-final class CategoryFinderResponse implements Response
+final class CreateCategoryCommand implements Command
 {
 
     private string $id;

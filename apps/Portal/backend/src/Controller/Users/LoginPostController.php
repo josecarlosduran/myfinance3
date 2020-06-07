@@ -6,8 +6,8 @@ declare(strict_types=1);
 namespace Myfinance\Apps\Portal\Backend\Controller\Users;
 
 
-use Myfinance\Portal\Users\Application\LoginUserQuery;
-use Myfinance\Portal\Users\Application\UserLoggerResponse;
+use Myfinance\Portal\Users\Application\Log\LoginUserQuery;
+use Myfinance\Portal\Users\Application\Log\UserLoggerResponse;
 use Myfinance\Shared\Domain\Bus\Query\QueryBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

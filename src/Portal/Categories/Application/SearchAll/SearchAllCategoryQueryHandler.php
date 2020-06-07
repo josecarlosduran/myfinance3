@@ -3,13 +3,12 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Portal\Categories\Application;
+namespace Myfinance\Portal\Categories\Application\SearchAll;
 
 
 use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Shared\Domain\Bus\Query\QueryHandler;
 use function Lambdish\Phunctional\map;
-use const Lambdish\Phunctional\map;
 
 final class SearchAllCategoryQueryHandler implements QueryHandler
 {
@@ -21,7 +20,7 @@ final class SearchAllCategoryQueryHandler implements QueryHandler
         $this->searcher = $searcher;
     }
 
-    public function __invoke(SearchAllCategoryQuery $query): CategoriesSearcherResponse
+    public function __invoke(SearchAllCategoryQuery $query): AllCategoriesSearcherResponse
     {
 
 
@@ -29,7 +28,7 @@ final class SearchAllCategoryQueryHandler implements QueryHandler
 
         $elements = $categories->getIterator()->getArrayCopy();
 
-        return new CategoriesSearcherResponse(map($this->toPrimitives(), $elements));
+        return new AllCategoriesSearcherResponse(map($this->toPrimitives(), $elements));
 
     }
 

@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Myfinance\Tests\Portal\Categories\Domain;
 
 
-use Myfinance\Portal\Categories\Application\CreateCategoryCommand;
+use Myfinance\Portal\Categories\Application\Create\CreateCategoryCommand;
 use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Portal\Categories\Domain\CategoryDescription;
 use Myfinance\Portal\Shared\Domain\Category\CategoryId;

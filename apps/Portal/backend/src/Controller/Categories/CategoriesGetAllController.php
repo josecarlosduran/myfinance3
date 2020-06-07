@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Myfinance\Apps\Portal\Backend\Controller\Categories;
 
-use Myfinance\Portal\Categories\Application\CategoriesSearcherResponse;
-use Myfinance\Portal\Categories\Application\SearchAllCategoryQuery;
+use Myfinance\Portal\Categories\Application\SearchAll\AllCategoriesSearcherResponse;
+use Myfinance\Portal\Categories\Application\SearchAll\SearchAllCategoryQuery;
 use Myfinance\Shared\Domain\Bus\Query\QueryBus;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +23,7 @@ final class CategoriesGetAllController
 
     public function __invoke(Request $request): Response
     {
-        /** @var CategoriesSearcherResponse $response */
+        /** @var AllCategoriesSearcherResponse $response */
         $response = $this->queryBus->ask(new SearchAllCategoryQuery());
 
         return new JsonResponse($response->getCollection());

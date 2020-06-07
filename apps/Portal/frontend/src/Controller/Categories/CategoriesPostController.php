@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Myfinance\Apps\Portal\Frontend\Controller\Categories;
 
 
-use Myfinance\Portal\Categories\Application\CreateCategoryCommand;
+use Myfinance\Portal\Categories\Application\Create\CreateCategoryCommand;
 use Myfinance\Shared\Infrastructure\Symfony\WebController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
