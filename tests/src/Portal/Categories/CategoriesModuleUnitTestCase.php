@@ -24,6 +24,21 @@ abstract class CategoriesModuleUnitTestCase extends UnitTestCase
              ->andReturnNull();
     }
 
+    protected function shouldFind(Category $category): void
+    {
+        $this->repository()
+             ->shouldReceive('search')
+             ->once()
+             ->andReturn($category);
+    }
+
+    protected function shouldSearchCategory(): void
+    {
+        $this->repository()
+             ->shouldReceive('search')
+             ->once();
+    }
+
     /** @return CategoryRepository|MockInterface */
     protected function repository(): MockInterface
     {

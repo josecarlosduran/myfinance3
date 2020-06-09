@@ -36,6 +36,7 @@ final class LoginPostController
             [
                 'token' => $response->token()
             ]
+            , RESPONSE::HTTP_CREATED
         );
 
     }

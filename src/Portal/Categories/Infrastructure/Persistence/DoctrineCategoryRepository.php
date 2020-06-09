@@ -20,7 +20,6 @@ final class DoctrineCategoryRepository extends DoctrineRepository implements Cat
     /** @noinspection PhpIncompatibleReturnTypeInspection */
     public function search(CategoryId $id): ?Category
     {
-
         return $this->repository(Category::class)->find($id);
     }
 

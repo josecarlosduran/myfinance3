@@ -10,7 +10,7 @@
 .phpunit.result.cache
 
 /build
-/eventStore
+/eventStore/
 *.repo
 /databases/
 /elasticsearch/

@@ -26,6 +26,14 @@ final class CategoryMother
         );
     }
 
+    public static function withId(CategoryId $categoryId): Category
+    {
+        return self::create(
+            CategoryIdMother::create($categoryId->value()),
+            CategoryDescriptionMother::random()
+        );
+    }
+
     public static function random(): Category
     {
         return self::create(CategoryIdMother::random(), CategoryDescriptionMother::random());
