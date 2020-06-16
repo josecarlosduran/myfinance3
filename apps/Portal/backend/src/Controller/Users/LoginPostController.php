@@ -8,20 +8,13 @@ namespace Myfinance\Apps\Portal\Backend\Controller\Users;
 
 use Myfinance\Portal\Users\Application\Log\LoginUserQuery;
 use Myfinance\Portal\Users\Application\Log\UserLoggerResponse;
-use Myfinance\Shared\Domain\Bus\Query\QueryBus;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Myfinance\Shared\Domain\ApiResponse\ApiResponse;
+use Myfinance\Shared\Infrastructure\Symfony\ApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class LoginPostController
+final class LoginPostController extends ApiController
 {
-
-    private QueryBus   $queryBus;
-
-    public function __construct(QueryBus $queryBus)
-    {
-        $this->queryBus = $queryBus;
-    }
 
     public function __invoke(Request $request): Response
     {
@@ -30,16 +23,16 @@ final class LoginPostController
         $password = $request->get('password');
 
         /** @var UserLoggerResponse $response */
-        $response = $this->queryBus->ask(new LoginUserQuery($username, $password));
+        $response = $this->ask(new LoginUserQuery($username, $password));
 
-        return new JsonResponse(
-            [
-                'token' => $response->token()
-            ]
-            , RESPONSE::HTTP_CREATED
-        );
+        return ApiResponse::create($response->toPrimitives(), ApiResponse::HTTP_CREATED)->format();
 
     }
 
 
+    protected function exceptions(): array
+    {
+        return [];
+
+    }
 }

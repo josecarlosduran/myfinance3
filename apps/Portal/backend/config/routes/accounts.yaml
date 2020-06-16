@@ -1,0 +1,12 @@
+accounts_put:
+  path: /accounts/{id}
+  controller: Myfinance\Apps\Portal\Backend\Controller\Accounts\AccountsPutController
+  defaults: { auth: false}
+  methods:  [PUT]
+
+accounts_get:
+  path: /accounts/{id}
+  controller: Myfinance\Apps\Portal\Backend\Controller\Accounts\AccountsGetController
+  defaults: { auth: false}
+  methods:  [GET]
+

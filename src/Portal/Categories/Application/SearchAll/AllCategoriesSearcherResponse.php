@@ -18,10 +18,10 @@ final class AllCategoriesSearcherResponse implements Response
         $this->collection = $collection;
     }
 
-    public function getCollection()
+
+    public function toPrimitives()
     {
         return $this->collection;
-
     }
 
 

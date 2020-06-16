@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 
-namespace Myfinance\Tests\Portal\Categories\Application;
+namespace Myfinance\Tests\Portal\Categories\Application\Create;
 
 use Myfinance\Portal\Categories\Application\Create\CreateCategoryCommand;
-use Myfinance\Portal\Shared\Domain\Category\CategoryId;
 use Myfinance\Portal\Categories\Domain\CategoryDescription;
-use Myfinance\Tests\Portal\Categories\Domain\CategoryIdMother;
+use Myfinance\Portal\Shared\Domain\Category\CategoryId;
 use Myfinance\Tests\Portal\Categories\Domain\CategoryDescriptionMother;
+use Myfinance\Tests\Portal\Categories\Domain\CategoryIdMother;
 
 final class CreateCategoryCommandMother
 {

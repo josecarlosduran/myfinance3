@@ -28,4 +28,9 @@ final class DoctrineUserRepository extends DoctrineRepository implements UserRep
     }
 
 
+    public function save(User $user): void
+    {
+        $this->persist($user);
+
+    }
 }

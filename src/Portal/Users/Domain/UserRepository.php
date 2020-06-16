@@ -10,4 +10,6 @@ interface UserRepository
 {
     public function search(Credentials $credentials): ?User;
 
+    public function save(User $user): void;
+
 }

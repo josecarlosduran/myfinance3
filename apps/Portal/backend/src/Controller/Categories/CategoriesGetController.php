@@ -6,31 +6,26 @@ namespace Myfinance\Apps\Portal\Backend\Controller\Categories;
 
 use Myfinance\Portal\Categories\Application\Find\CategoryFinderResponse;
 use Myfinance\Portal\Categories\Application\Find\FindCategoryQuery;
-use Myfinance\Shared\Domain\Bus\Query\QueryBus;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Myfinance\Shared\Domain\ApiResponse\ApiResponse;
+use Myfinance\Shared\Infrastructure\Symfony\ApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class CategoriesGetController
+final class CategoriesGetController extends ApiController
 {
 
-    private QueryBus   $queryBus;
-
-    public function __construct(QueryBus $queryBus)
-    {
-        $this->queryBus = $queryBus;
-    }
 
     public function __invoke(string $id, Request $request): Response
     {
         /** @var CategoryFinderResponse $response */
-        $response = $this->queryBus->ask(new FindCategoryQuery($id));
+        $response = $this->ask(new FindCategoryQuery($id));
 
-        return new JsonResponse(
-            [
-                'id' => $response->id(),
-                'description' => $response->description()
-            ]
-        );
+        return ApiResponse::create($response->toPrimitives())->format();
+
+    }
+
+    protected function exceptions(): array
+    {
+        return [];
     }
 }

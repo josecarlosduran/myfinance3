@@ -8,6 +8,12 @@
         <id name="username" type="username" column="user" length="30"/>
         <embedded name="password" class="Myfinance\Portal\Users\Domain\EncryptedPassword"
                   use-column-prefix="false"/>
+        <embedded name="firstName" class="Myfinance\Portal\Users\Domain\UserFirstName"
+                  use-column-prefix="false"/>
+        <embedded name="surname" class="Myfinance\Portal\Users\Domain\UserSurname"
+                  use-column-prefix="false"/>
+        <embedded name="email" class="Myfinance\Portal\Users\Domain\UserEmail"
+                  use-column-prefix="false"/>
         <embedded name="active" class="Myfinance\Portal\Users\Domain\UserActive"
                   use-column-prefix="false"/>
         <embedded name="role" class="Myfinance\Portal\Users\Domain\UserRole"

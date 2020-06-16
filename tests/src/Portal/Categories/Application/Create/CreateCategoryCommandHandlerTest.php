@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Myfinance\Tests\Portal\Categories\Application;
+namespace Myfinance\Tests\Portal\Categories\Application\Create;
 
 use Myfinance\Portal\Categories\Application\Create\CategoryCreator;
 use Myfinance\Portal\Categories\Application\Create\CreateCategoryCommandHandler;

@@ -23,5 +23,13 @@ final class UserLoggerResponse implements Response
         return $this->token;
     }
 
+    public function toPrimitives(): array
+    {
+        return
+            [
+                'token' => $this->token
+            ];
+    }
+
 
 }

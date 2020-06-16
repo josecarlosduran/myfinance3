@@ -6,29 +6,27 @@ namespace Myfinance\Apps\Portal\Backend\Controller\Categories;
 
 use Myfinance\Portal\Categories\Application\Create\CreateCategoryCommand;
 use Myfinance\Portal\Categories\Domain\CategoryDescriptionTooLong;
-use Myfinance\Shared\Domain\Bus\Command\CommandBus;
+use Myfinance\Shared\Domain\ApiResponse\ApiResponse;
+use Myfinance\Shared\Infrastructure\Symfony\ApiController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-final class CategoriesPutController
+final class CategoriesPutController extends ApiController
 {
-
-    private CommandBus $commandBus;
-
-    public function __construct(CommandBus $commandBus)
-    {
-        $this->commandBus = $commandBus;
-    }
 
     public function __invoke(string $id, Request $request): Response
     {
         $description = $request->get('description');
 
-        try {
-            $this->commandBus->dispatch(new CreateCategoryCommand($id, $description));
-        } catch (CategoryDescriptionTooLong $error) {
-            return new Response ($error->getMessage(), Response::HTTP_BAD_REQUEST);
-        }
-        return new Response('', Response::HTTP_CREATED);
+        $this->dispatch(new CreateCategoryCommand($id, $description));
+        return ApiResponse::createEmpty(ApiResponse::HTTP_CREATED)->format();
+    }
+
+    protected function exceptions(): array
+    {
+        return [
+            CategoryDescriptionTooLong::class => ApiResponse::HTTP_BAD_REQUEST
+        ];
+
     }
 }

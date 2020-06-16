@@ -7,22 +7,27 @@ namespace Myfinance\Tests\Shared\Infrastructure\Behat;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Mink\Session;
 use Behat\MinkExtension\Context\RawMinkContext;
+use Doctrine\ORM\EntityManager;
+use Myfinance\Tests\Shared\Infrastructure\Doctrine\DatabaseCleaner;
 use Myfinance\Tests\Shared\Infrastructure\Mink\MinkHelper;
 use Myfinance\Tests\Shared\Infrastructure\Mink\MinkSessionRequestHelper;
 use RuntimeException;
 
-final class PortalContext extends RawMinkContext
+class PortalContext extends RawMinkContext
 {
     private $sessionHelper;
     private $minkSession;
     private $request;
 
-    public function __construct(Session $minkSession)
+    public function __construct(EntityManager $entityManager, DatabaseCleaner $databaseCleaner, Session $minkSession)
     {
         $this->minkSession   = $minkSession;
         $this->sessionHelper = new MinkHelper($this->minkSession);
         $this->request       = new MinkSessionRequestHelper(new MinkHelper($minkSession));
+
+        $databaseCleaner->__invoke($entityManager);
     }
+
 
     /**
      * @Given I send a :method request to :url
@@ -62,7 +67,7 @@ final class PortalContext extends RawMinkContext
     {
         $actual = trim($this->sessionHelper->getResponse());
 
-        if (!empty($actual)) {
+        if ($actual != "{\"data\":[]}") {
             throw new RuntimeException(
                 sprintf("The outputs is not empty, Actual:\n%s", $actual)
             );
@@ -100,6 +105,7 @@ final class PortalContext extends RawMinkContext
             );
         }
     }
+
 
     private function sanitizeOutput(string $output)
     {

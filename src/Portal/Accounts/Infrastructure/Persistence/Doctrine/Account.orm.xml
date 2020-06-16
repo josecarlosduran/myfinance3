@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Myfinance\Portal\Accounts\Domain\Account" table="accounts">
+        <id name="id" type="account_id" column="id" length="36"/>
+
+        <embedded name="description" class="Myfinance\Portal\Accounts\Domain\AccountDescription"
+                  use-column-prefix="false"/>
+        <embedded name="iban" class="Myfinance\Portal\Accounts\Domain\AccountIban"
+                  use-column-prefix="false"/>
+        <embedded name="isSavingsAccount" class="Myfinance\Portal\Accounts\Domain\AccountIsSavingsAccount"
+                  use-column-prefix="false"/>
+    </entity>
+
+</doctrine-mapping>

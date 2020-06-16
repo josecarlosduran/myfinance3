@@ -20,12 +20,19 @@ portal_backend:
     categories:
       paths: [ tests/apps/portal/backend/features/categories ]
       contexts:
-        - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
+        - Myfinance\Tests\Portal\Categories\Infrastructure\Behat\PortalCategoriesContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
 
     login:
       paths: [ tests/apps/portal/backend/features/login ]
       contexts:
-        - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
+        - Myfinance\Tests\Portal\Login\Infrastructure\Behat\PortalLoginContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
+
+    accounts:
+      paths: [ tests/apps/portal/backend/features/accounts ]
+      contexts:
+        - Myfinance\Tests\Portal\Accounts\Infrastructure\Behat\PortalAccountsContext
+        - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
+
 

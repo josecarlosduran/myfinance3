@@ -15,9 +15,14 @@ final class Password extends StringValueObject
         return $this->value() === $anotherPassword->value();
     }
 
+    public function encrypt()
+    {
+        return sha1($this->value());
+    }
+
     public function isEqualEncryptedThat(EncryptedPassword $anotherPassword)
     {
-        return sha1($this->value()) === $anotherPassword->value();
+        return $this->encrypt() === $anotherPassword->value();
     }
 
 }

@@ -26,7 +26,8 @@
     "elasticsearch/elasticsearch": "^7.3",
     "monolog/monolog": "^2.0",
     "symfony/monolog-bundle": "^3.5",
-    "firebase/php-jwt": "^5.2"
+    "firebase/php-jwt": "^5.2",
+    "ext-bcmath": "*"
   },
   "require-dev": {
     "ext-xdebug": "*",

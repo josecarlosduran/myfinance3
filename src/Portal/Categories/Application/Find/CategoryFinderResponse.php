@@ -30,5 +30,13 @@ final class CategoryFinderResponse implements Response
         return $this->description;
     }
 
+    public function toPrimitives(): array
+    {
+        return [
+            'id' => $this->id,
+            'description' => $this->description
+        ];
+    }
+
 
 }

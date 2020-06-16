@@ -18,6 +18,15 @@ final class CategoryMother
         return new Category($id, $description);
     }
 
+    public static function withValues(string $id, string $description): Category
+    {
+        return self::create(
+            new CategoryId($id),
+            new CategoryDescription($description)
+        );
+
+    }
+
     public static function fromCommand(CreateCategoryCommand $request): Category
     {
         return self::create(
