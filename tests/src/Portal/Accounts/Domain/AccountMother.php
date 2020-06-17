@@ -12,6 +12,7 @@ use Myfinance\Portal\Accounts\Domain\AccountDescription;
 use Myfinance\Portal\Accounts\Domain\AccountIban;
 use Myfinance\Portal\Accounts\Domain\AccountId;
 use Myfinance\Portal\Accounts\Domain\AccountIsSavingsAccount;
+use Myfinance\Shared\Domain\Utils;
 
 final class AccountMother
 {
@@ -19,10 +20,11 @@ final class AccountMother
 
     public static function withValues(string $id, string $description, string $iban, string $isSavingsAccount): Account
     {
+
         return self::create(new AccountId($id),
             new AccountDescription($description),
             new AccountIban($iban),
-            new AccountIsSavingsAccount((bool)$isSavingsAccount));
+            new AccountIsSavingsAccount(Utils::stringToBool($isSavingsAccount)));
     }
 
     public static function create(

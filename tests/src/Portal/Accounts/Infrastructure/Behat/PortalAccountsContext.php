@@ -36,6 +36,7 @@ final class PortalAccountsContext extends PortalContext
 
     private function creator(): callable
     {
+
         return function (array $account) {
             $this->repository->save(AccountMother::withValues($account['id'],
                 $account['description'],

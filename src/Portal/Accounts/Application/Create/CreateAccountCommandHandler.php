@@ -28,7 +28,7 @@ final class CreateAccountCommandHandler implements CommandHandler
             new AccountId($command->id()),
             new AccountDescription($command->description()),
             new AccountIban($command->iban()),
-            new AccountIsSavingsAccount($command->savingsAccount())
+            new AccountIsSavingsAccount((bool)$command->savingsAccount())
         );
 
     }

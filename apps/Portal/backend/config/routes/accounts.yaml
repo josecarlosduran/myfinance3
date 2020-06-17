@@ -10,3 +10,10 @@ accounts_get:
   defaults: { auth: false}
   methods:  [GET]
 
+accounts_list:
+  path: /accounts
+  controller: Myfinance\Apps\Portal\Backend\Controller\Accounts\AccountsGetAllController
+  defaults: { auth: false, roles: ROLE_USER}
+  methods:  [GET]
+
+

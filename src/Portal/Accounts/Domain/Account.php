@@ -66,5 +66,17 @@ final class Account extends AggregateRoot
         return $this->isSavingsAccount;
     }
 
+    public function toPrimitives(): array
+    {
+        return
+            [
+                'id'             => $this->id()->value(),
+                'description'    => $this->description()->value(),
+                'iban'           => $this->iban()->value(),
+                'savingsAccount' => $this->isSavingsAccount()->value(),
+
+            ];
+    }
+
 
 }

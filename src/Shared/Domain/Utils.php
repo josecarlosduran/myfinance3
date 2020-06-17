@@ -31,6 +31,11 @@ final class Utils
         return new DateTimeImmutable($date);
     }
 
+    public static function stringToBool(string $value): bool
+    {
+        return $value === 'true' || $value === '1';
+    }
+
     public static function jsonEncode(array $values): string
     {
         return json_encode($values);
