@@ -7,11 +7,11 @@ categories_put:
 categories_get:
   path: /categories/{id}
   controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetController
-  defaults: { auth: false}
+  defaults: { auth: true, roles: ROLE_USER}
   methods:  [GET]
 
 categories_list:
   path: /categories
   controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesGetAllController
-  defaults: { auth: false, roles: ROLE_ADMIN}
+  defaults: { auth: true, roles: ROLE_USER}
   methods:  [GET]

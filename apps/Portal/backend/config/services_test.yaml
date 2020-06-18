@@ -10,5 +10,12 @@ services:
   Myfinance\Tests\:
     resource: '../../../../tests/src'
 
-# Instance selector
+  # Tagging
+
+  Myfinance\Tests\Shared\Infrastructure\Symfony\InsertUserTokenMiddleware:
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 300}
+
+
+  # Instance selector
   Myfinance\Portal\Categories\Domain\CategoryRepository: '@Myfinance\Portal\Categories\Infrastructure\Persistence\DoctrineCategoryRepository'

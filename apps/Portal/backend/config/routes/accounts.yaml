@@ -1,19 +1,19 @@
 accounts_put:
   path: /accounts/{id}
   controller: Myfinance\Apps\Portal\Backend\Controller\Accounts\AccountsPutController
-  defaults: { auth: false}
+  defaults: { auth: true, roles: ROLE_USER}
   methods:  [PUT]
 
 accounts_get:
   path: /accounts/{id}
   controller: Myfinance\Apps\Portal\Backend\Controller\Accounts\AccountsGetController
-  defaults: { auth: false}
+  defaults: { auth: true, roles: ROLE_USER}
   methods:  [GET]
 
 accounts_list:
   path: /accounts
   controller: Myfinance\Apps\Portal\Backend\Controller\Accounts\AccountsGetAllController
-  defaults: { auth: false, roles: ROLE_USER}
+  defaults: { auth: true, roles: ROLE_USER}
   methods:  [GET]
 
 
