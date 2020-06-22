@@ -1,0 +1,6 @@
+groups_put:
+  path: /groups/{id}
+  controller: Myfinance\Apps\Portal\Backend\Controller\Groups\GroupsPutController
+  defaults: { auth: true, roles: ROLE_USER}
+  methods:  [PUT]
+

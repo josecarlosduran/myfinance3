@@ -15,6 +15,7 @@ final class InsertUserTokenMiddleware
         $token = 'Bearer ' . TokenMother::withRoleUser();
         $event->getRequest()->headers->set('authorization', $token);
 
+
     }
 
 

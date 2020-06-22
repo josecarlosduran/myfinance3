@@ -35,4 +35,11 @@ portal_backend:
         - Myfinance\Tests\Portal\Accounts\Infrastructure\Behat\PortalAccountsContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
 
+    groups:
+      paths: [ tests/apps/portal/backend/features/groups ]
+      contexts:
+        - Myfinance\Tests\Portal\Groups\Infrastructure\Behat\PortalGroupsContext
+        - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
+
+
 
