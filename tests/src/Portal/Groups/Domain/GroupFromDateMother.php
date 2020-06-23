@@ -18,7 +18,8 @@ final class GroupFromDateMother
 
     public static function random(): GroupFromDate
     {
-        return self::create(DateTimeMother::random()->format('d-m-Y'));
+        return self::create(DateTimeMother::random()->format('d/m/Y'));
+
     }
 
 

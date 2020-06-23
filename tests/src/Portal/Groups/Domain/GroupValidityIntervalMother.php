@@ -15,11 +15,12 @@ final class GroupValidityIntervalMother
     public static function random(): GroupValidityInterval
     {
 
-        $groupFromDate  = GroupFromDateMother::random();
-        $until          = $groupFromDate;
-        $groupUntilDate = new GroupUntilDate($until->date()->modify('+ 2 month')->format('d/m/Y'));
+        $groupFromDate = GroupFromDateMother::random();
+        $until         = clone $groupFromDate->date();
+        $until->modify('+ 1 day');
+        $groupUntilDate = new GroupUntilDate($until->format('d/m/Y'));
 
-        return self::create(GroupFromDateMother::random(), $groupUntilDate);
+        return self::create($groupFromDate, $groupUntilDate);
     }
 
     public static function create(GroupFromDate $from, GroupUntilDate $until): GroupValidityInterval

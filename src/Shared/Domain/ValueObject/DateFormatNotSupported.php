@@ -10,14 +10,14 @@ use Myfinance\Shared\Domain\DomainError;
 
 final class DateFormatNotSupported extends DomainError
 {
-    private string $date;
-    private array  $formatsSupported;
+    private string  $date;
+    private string  $formatsSupported;
 
     public function __construct(string $date, array $formatsSupported)
     {
-        parent::__construct();
         $this->date             = $date;
         $this->formatsSupported = implode(", ", $formatsSupported);
+        parent::__construct();
     }
 
     public function errorCode(): string

@@ -4,3 +4,9 @@ groups_put:
   defaults: { auth: true, roles: ROLE_USER}
   methods:  [PUT]
 
+groups_get:
+  path: /groups/{id}
+  controller: Myfinance\Apps\Portal\Backend\Controller\Groups\GroupsGetController
+  defaults: { auth: true, roles: ROLE_USER}
+  methods:  [GET]
+

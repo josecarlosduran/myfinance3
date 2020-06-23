@@ -37,4 +37,25 @@ final class GroupMother
     }
 
 
+    public static function withId(GroupId $groupId): Group
+    {
+        return self::create(
+            GroupIdMother::create($groupId->value()),
+            GroupDescriptionMother::random(),
+            GroupValidityIntervalMother::random()
+        );
+    }
+
+    public static function withValues(string $id, string $description, string $from, string $until): Group
+    {
+        return self::create(new GroupId($id),
+            new GroupDescription($description),
+            new GroupValidityInterval(
+                new GroupFromDate($from),
+                new GroupUntilDate($until))
+        );
+
+    }
+
+
 }

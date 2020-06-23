@@ -51,19 +51,21 @@ abstract class DateValueObject
 
     private function createDatefromFirstFormatSupported(string $date): void
     {
+        $dateCreated = false;
         foreach (self::supportedDateFormats as $dateFormat) {
-            $this->date = DateTime::createFromFormat($dateFormat, $date);
-            if ($this->date) {
+            $dateCreated = DateTime::createFromFormat($dateFormat, $date);
+            if ($dateCreated) {
                 break;
             }
         }
 
-        $this->ensureDateCreated($date);
+        $this->ensureDateCreated($dateCreated, $date);
+        $this->date = $dateCreated;
     }
 
-    private function ensureDateCreated(string $date): void
+    private function ensureDateCreated($dateCreated, string $date): void
     {
-        if (!$this->date) {
+        if (!$dateCreated) {
             throw new DateFormatNotSupported($date, self::supportedDateFormats);
         }
     }

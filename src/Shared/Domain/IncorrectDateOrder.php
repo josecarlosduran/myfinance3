@@ -14,10 +14,10 @@ final class IncorrectDateOrder extends DomainError
 
     public function __construct(string $from, string $until)
     {
-        parent::__construct();
-
         $this->from  = $from;
         $this->until = $until;
+        parent::__construct();
+
     }
 
     public function errorCode(): string
