@@ -50,5 +50,15 @@ final class Group extends AggregateRoot
         return $this->validityInterval;
     }
 
+    public function toPrimitives()
+    {
+        return [
+            'id'          => $this->id->value(),
+            'description' => $this->description->value(),
+            'from'        => $this->validityInterval->fromToHuman(),
+            'until'       => $this->validityInterval->untilToHuman()
+        ];
+    }
+
 
 }

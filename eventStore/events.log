@@ -153,3 +153,5 @@
 [2020-06-19T07:23:01.647216+00:00] test.INFO: user.logged : {"username":"test-user"} ["EVENT","PORTAL"] []
 [2020-06-19T07:23:28.222000+00:00] test.INFO: category.created : {"description":"Test Category"} ["EVENT","PORTAL"] []
 [2020-06-19T07:23:29.422649+00:00] test.INFO: user.logged : {"username":"test-user"} ["EVENT","PORTAL"] []
+[2020-06-23T12:40:45.954883+00:00] test.INFO: category.created : {"description":"Test Category"} ["EVENT","PORTAL"] []
+[2020-06-23T12:40:47.288506+00:00] test.INFO: user.logged : {"username":"test-user"} ["EVENT","PORTAL"] []

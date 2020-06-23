@@ -10,3 +10,10 @@ groups_get:
   defaults: { auth: true, roles: ROLE_USER}
   methods:  [GET]
 
+groups_list:
+  path: /groups
+  controller: Myfinance\Apps\Portal\Backend\Controller\Groups\GroupsGetAllController
+  defaults: { auth: true, roles: ROLE_USER}
+  methods:  [GET]
+
+
