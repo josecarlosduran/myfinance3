@@ -21,7 +21,7 @@ reload:
 	@docker-compose exec php-fpm kill -USR2 1
 	@docker-compose exec nginx nginx -s reload
 
-tests:
+test:
 	@docker exec myfinance3-php make run-tests
 
 run-tests:
