@@ -31,6 +31,8 @@
 /*!40101 SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES = @@SQL_NOTES, SQL_NOTES = 0 */;
 
+create database if not exists myfinance_portal;
+use myfinance_portal;
 --
 -- Table structure for table `accounts`
 --
@@ -65,7 +67,7 @@ UNLOCK TABLES;
 -- Table structure for table `agrupations`
 --
 
-DROP TABLE IF EXISTS expenses_groups;
+DROP TABLE IF EXISTS agrupations;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `agrupations`
@@ -84,10 +86,10 @@ CREATE TABLE `agrupations`
 -- Dumping data for table `agrupations`
 --
 
-LOCK TABLES expenses_groups WRITE;
-/*!40000 ALTER TABLE expenses_groups
+LOCK TABLES agrupations WRITE;
+/*!40000 ALTER TABLE agrupations
     DISABLE KEYS */;
-/*!40000 ALTER TABLE expenses_groups
+/*!40000 ALTER TABLE agrupations
     ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,7 +361,7 @@ CREATE TABLE `movements`
     KEY `IDX_593A8C4AF483A40E` (`import`),
     KEY `IDX_593A8C4A3C02427D` (`agrupation`),
     CONSTRAINT `FK_593A8C4A31C7BFCF` FOREIGN KEY (`account`) REFERENCES `accounts` (`id`),
-    CONSTRAINT `FK_593A8C4A3C02427D` FOREIGN KEY (`agrupation`) REFERENCES expenses_groups (`id`),
+    CONSTRAINT `FK_593A8C4A3C02427D` FOREIGN KEY (`agrupation`) REFERENCES agrupations (`id`),
     CONSTRAINT `FK_593A8C4ABF1CD3C3` FOREIGN KEY (`version`) REFERENCES `versions` (`id`),
     CONSTRAINT `FK_593A8C4ADEDDF2F0` FOREIGN KEY (`payment_type`) REFERENCES `payments_types` (`id`),
     CONSTRAINT `FK_593A8C4AF483A40E` FOREIGN KEY (`import`) REFERENCES `imports` (`id`) ON DELETE CASCADE,
