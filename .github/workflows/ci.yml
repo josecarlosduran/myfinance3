@@ -1,0 +1,39 @@
+name: CI MyFinance3 Workflow
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Hello 👋🏻
+        run: echo "Hello!!!! from ${{ github.workflow }} triggered by the ${{ github.event_name }} done by ${{ github.actor }}"
+
+      - name: 😊 Job Context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: |
+          echo "Job Context: $JOB_CONTEXT"
+          echo "Done!"
+
+      - name: Install dependencies ⚙️
+        run: make composer-install
+
+      - name: Start all the environment 🐳
+        run: make start
+
+      - name: Wait for the environment to get up 💤
+        run:
+          while ! docker exec myfinance3-db mysqladmin --user=root --password= --host="127.0.0.1" ping --silent &> /dev/null ; do
+          echo "Waiting for database connection..."
+          sleep 2
+          done
+
+      - name: Generate RabbitMQ Structure 👨🏻‍💻
+        run: make configure-rabbitMQ
+
+      - name: Run the tests 🚀
+        run: make tests
