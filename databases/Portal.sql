@@ -64,13 +64,13 @@ LOCK TABLES `accounts` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `agrupations`
+-- Table structure for table `expenses_groups`
 --
 
-DROP TABLE IF EXISTS agrupations;
+DROP TABLE IF EXISTS expenses_groups;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `agrupations`
+CREATE TABLE `expenses_groups`
 (
     `id`          int                                                     NOT NULL AUTO_INCREMENT,
     `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -83,13 +83,13 @@ CREATE TABLE `agrupations`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `agrupations`
+-- Dumping data for table `expenses_groups`
 --
 
-LOCK TABLES agrupations WRITE;
-/*!40000 ALTER TABLE agrupations
+LOCK TABLES expenses_groups WRITE;
+/*!40000 ALTER TABLE expenses_groups
     DISABLE KEYS */;
-/*!40000 ALTER TABLE agrupations
+/*!40000 ALTER TABLE expenses_groups
     ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +361,7 @@ CREATE TABLE `movements`
     KEY `IDX_593A8C4AF483A40E` (`import`),
     KEY `IDX_593A8C4A3C02427D` (`agrupation`),
     CONSTRAINT `FK_593A8C4A31C7BFCF` FOREIGN KEY (`account`) REFERENCES `accounts` (`id`),
-    CONSTRAINT `FK_593A8C4A3C02427D` FOREIGN KEY (`agrupation`) REFERENCES agrupations (`id`),
+    CONSTRAINT `FK_593A8C4A3C02427D` FOREIGN KEY (`agrupation`) REFERENCES expenses_groups (`id`),
     CONSTRAINT `FK_593A8C4ABF1CD3C3` FOREIGN KEY (`version`) REFERENCES `versions` (`id`),
     CONSTRAINT `FK_593A8C4ADEDDF2F0` FOREIGN KEY (`payment_type`) REFERENCES `payments_types` (`id`),
     CONSTRAINT `FK_593A8C4AF483A40E` FOREIGN KEY (`import`) REFERENCES `imports` (`id`) ON DELETE CASCADE,
