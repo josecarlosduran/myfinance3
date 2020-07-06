@@ -36,4 +36,4 @@ jobs:
         run: make configure-rabbitMQ
 
       - name: Run the tests 🚀
-        run: make tests
+        run: make test
