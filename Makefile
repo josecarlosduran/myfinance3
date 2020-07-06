@@ -27,6 +27,7 @@ test:
 
 run-tests:
 	make unit-test
+	make integration-test
 	make acceptance-test
 
 test-unit:
@@ -61,16 +62,6 @@ run-tests-acceptance:
 acceptance-test:
 	./vendor/bin/behat -p portal_backend -v --colors
 
-db-init:
-	@docker exec myfinance3-db make database-delete-exec
-
-database-delete-exec:
-	make database-delete
-
-database-delete:
-	echo "drop database myfinance_portal" >> drop.sql
-	/usr/bin/mysql -u root -p myfinance_portal < drop.sql
-	rm drop.sql
 
 
 # 🐳 Docker Compose
