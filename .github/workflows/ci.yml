@@ -26,10 +26,10 @@ jobs:
         run: make start
 
       - name: Wait for the environment to get up 💤
-        run:
+        run: |
           while ! docker exec myfinance3-db mysqladmin --user=root --password= --host="127.0.0.1" ping --silent &> /dev/null ; do
-          echo "Waiting for database connection..."
-          sleep 2
+              echo "Waiting for database connection..."
+              sleep 2
           done
 
       - name: Generate RabbitMQ Structure 👨🏻‍💻
