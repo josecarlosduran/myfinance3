@@ -5,7 +5,7 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <embeddable name="Myfinance\Portal\Groups\Domain\GroupUntilDate">
-        <field name="date" column="until_date" type="date"/>
+        <field name="date" column="until" type="date"/>
     </embeddable>
 
 </doctrine-mapping>

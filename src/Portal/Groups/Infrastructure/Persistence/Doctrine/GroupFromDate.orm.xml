@@ -5,7 +5,7 @@
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <embeddable name="Myfinance\Portal\Groups\Domain\GroupFromDate">
-        <field name="date" column="from_date" type="date"/>
+        <field name="date" column="from" type="date"/>
     </embeddable>
 
 </doctrine-mapping>
