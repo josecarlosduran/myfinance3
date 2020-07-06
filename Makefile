@@ -11,7 +11,8 @@ deps_rebuild: composer-update
 composer-install: CMD=install
 composer-update: CMD=update
 composer composer-install composer-update:
-	@docker run --rm --interactive --volume $(current-dir):/app --user $(id -u):$(id -g) \
+	@docker run --rm --interactive --volume $(current-dir):/app --volume ${COMPOSER_HOME:-$HOME/.composer}:/tmp \
+        --user $(id -u):$(id -g) \
 		clevyr/prestissimo $(CMD) \
 			--ignore-platform-reqs \
 			--no-ansi \
@@ -26,7 +27,6 @@ test:
 
 run-tests:
 	make unit-test
-	make acceptance-test
 	make acceptance-test
 
 test-unit:
