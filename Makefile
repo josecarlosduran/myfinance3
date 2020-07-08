@@ -60,7 +60,7 @@ run-tests-acceptance:
 	make acceptance-test
 
 acceptance-test:
-	./vendor/bin/behat -p portal_backend --format=progress -v
+	./vendor/bin/behat -p portal_backend -v --colors
 
 
 
