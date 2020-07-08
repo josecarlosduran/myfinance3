@@ -12,25 +12,25 @@ portal_backend:
 
   suites:
     health_check:
-      paths: [ tests/apps/portal/backend/features/health_check ]
+      paths: [ tests/apps/portal/backend/features/Health_check ]
       contexts:
         - Myfinance\Tests\Shared\Infrastructure\Behat\PortalContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
 
     categories:
-      paths: [ tests/apps/portal/backend/features/categories ]
+      paths: [ tests/apps/portal/backend/features/Categories ]
       contexts:
         - Myfinance\Tests\Portal\Categories\Infrastructure\Behat\PortalCategoriesContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
 
     login:
-      paths: [ tests/apps/portal/backend/features/login ]
+      paths: [ tests/apps/portal/backend/features/Login ]
       contexts:
         - Myfinance\Tests\Portal\Login\Infrastructure\Behat\PortalLoginContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
 
     accounts:
-      paths: [ tests/apps/portal/backend/features/accounts ]
+      paths: [ tests/apps/portal/backend/features/Accounts ]
       contexts:
         - Myfinance\Tests\Portal\Accounts\Infrastructure\Behat\PortalAccountsContext
         - Myfinance\Tests\Shared\Infrastructure\Behat\ApplicationFeatureContext
