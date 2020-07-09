@@ -12,6 +12,10 @@ final class DateTimeMother
 {
     public static function random(): DateTime
     {
-        return MotherCreator::random()->dateTime;
+        $dateWithTime      = MotherCreator::random()->dateTime;
+        $dateOnlyFormatted = $dateWithTime->format("Y-m-d");
+        $dateReturn        = new DateTime($dateOnlyFormatted);
+
+        return new $dateReturn;
     }
 }

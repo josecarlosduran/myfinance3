@@ -13,8 +13,8 @@ abstract class DateValueObject
 
     const supportedDateFormats =
         [
-            'd/m/Y',
-            'Y-m-d'
+            'd/m/Y H:i:s',
+            'Y-m-d H:i:s'
         ];
 
     protected ?DateTime $date;
@@ -53,7 +53,7 @@ abstract class DateValueObject
     {
         $dateCreated = false;
         foreach (self::supportedDateFormats as $dateFormat) {
-            $dateCreated = DateTime::createFromFormat($dateFormat, $date);
+            $dateCreated = DateTime::createFromFormat($dateFormat, $date . " 00:00:00");
             if ($dateCreated) {
                 break;
             }

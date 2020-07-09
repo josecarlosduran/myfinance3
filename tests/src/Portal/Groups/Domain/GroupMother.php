@@ -57,5 +57,14 @@ final class GroupMother
 
     }
 
+    public static function random(): Group
+    {
+        return self::create(
+            GroupIdMother::random(),
+            GroupDescriptionMother::random(),
+            GroupValidityIntervalMother::random()
+        );
+    }
+
 
 }
