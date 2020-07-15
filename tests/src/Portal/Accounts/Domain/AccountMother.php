@@ -27,6 +27,7 @@ final class AccountMother
             new AccountIsSavingsAccount(Utils::stringToBool($isSavingsAccount)));
     }
 
+
     public static function create(
         AccountId $id,
         AccountDescription $description,
@@ -51,6 +52,7 @@ final class AccountMother
             new AccountIban($command->iban()),
             new AccountIsSavingsAccount($command->savingsAccount()));
     }
+
 
     public static function random(): Account
     {

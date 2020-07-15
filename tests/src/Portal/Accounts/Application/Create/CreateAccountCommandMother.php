@@ -44,4 +44,12 @@ final class CreateAccountCommandMother
             AccountIbanMother::random(),
             AccountIsSavingsAccountMother::random());
     }
+
+    public static function withIncorrectIban(): CreateAccountCommand
+    {
+        return self::create(AccountIdMother::random(),
+            AccountDescriptionMother::random(),
+            AccountIbanMother::incorrect(),
+            AccountIsSavingsAccountMother::random());
+    }
 }

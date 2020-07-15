@@ -5,6 +5,7 @@ namespace Myfinance\Tests\Portal\Accounts\Application\Find;
 use Myfinance\Portal\Accounts\Application\Find\AccountFinder;
 use Myfinance\Portal\Accounts\Application\Find\FindAccountQueryHandler;
 use Myfinance\Portal\Accounts\Domain\AccountId;
+use Myfinance\Portal\Accounts\Domain\AccountNotFound;
 use Myfinance\Tests\Portal\Accounts\AccountsModuleUnitTestCase;
 use Myfinance\Tests\Portal\Accounts\Domain\AccountMother;
 
@@ -39,6 +40,19 @@ class FindAccountQueryHandlerTest extends AccountsModuleUnitTestCase
         $this->shouldFind($account);
 
         $this->assertAskResponse($response, $query, $this->handler);
+
+    }
+
+    /** @test */
+    public function it_should_not_find_an_account(): void
+    {
+        $query = FindAccountQueryMother::random();
+
+        $this->shouldSearchAccount();
+
+        $this->expectException(AccountNotFound::class);
+
+        $this->handler->__invoke($query);
 
     }
 }

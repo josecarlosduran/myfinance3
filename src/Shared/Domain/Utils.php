@@ -197,7 +197,7 @@ final class Utils
                 'z' => 35
             ];
 
-        if (strlen($iban) == $Countries[substr($iban, 0, 2)]) {
+        if (isset($Countries[substr($iban, 0, 2)]) && strlen($iban) == $Countries[substr($iban, 0, 2)]) {
 
             $MovedChar      = substr($iban, 4) . substr($iban, 0, 4);
             $MovedCharArray = str_split($MovedChar);

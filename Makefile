@@ -62,6 +62,17 @@ run-tests-acceptance:
 acceptance-test:
 	./vendor/bin/behat -p portal_backend -v --colors
 
+test-coverage:
+	@docker exec myfinance3-php make run-tests-coverage
+
+run-tests-coverage:
+	make coverage
+
+coverage:
+	mkdir -p build/test_results/phpunit
+	./vendor/bin/phpunit  --coverage-html build/test_results/phpunit/coverage
+
+
 
 
 # 🐳 Docker Compose

@@ -24,11 +24,18 @@
         verbose="false">
 
     <php>
-        <ini name="error_reporting" value="-1" />
+        <ini name="error_reporting" value="-1"/>
         <server name="KERNEL_CLASS" value="Myfinance\Apps\Portal\Backend\PortalBackendKernel"/>
-        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
         <env name="APP_ENV" value="test"/>
     </php>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+            <file>/path/to/file</file>
+        </whitelist>
+    </filter>
 
     <testsuites>
         <testsuite name="Contexts">

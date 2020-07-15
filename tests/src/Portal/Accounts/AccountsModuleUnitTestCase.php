@@ -9,6 +9,7 @@ namespace Myfinance\Tests\Portal\Accounts;
 use Mockery\MockInterface;
 use Myfinance\Portal\Accounts\Domain\Account;
 use Myfinance\Portal\Accounts\Domain\AccountRepository;
+use Myfinance\Portal\Accounts\Domain\Accounts;
 use Myfinance\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
 
 abstract class AccountsModuleUnitTestCase extends UnitTestCase
@@ -44,6 +45,14 @@ abstract class AccountsModuleUnitTestCase extends UnitTestCase
         $this->repository()
              ->shouldReceive('search')
              ->once();
+    }
+
+    protected function shouldSearchAllAccounts(Accounts $accounts): void
+    {
+        $this->repository()
+             ->shouldReceive('searchAll')
+             ->once()
+             ->andReturn($accounts);
     }
 
 }
