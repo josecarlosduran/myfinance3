@@ -7,6 +7,7 @@ namespace Myfinance\Tests\Portal\Categories;
 
 
 use Mockery\MockInterface;
+use Myfinance\Portal\Categories\Domain\Categories;
 use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Portal\Categories\Domain\CategoryRepository;
 use Myfinance\Tests\Shared\Infrastructure\PhpUnit\UnitTestCase;
@@ -38,6 +39,15 @@ abstract class CategoriesModuleUnitTestCase extends UnitTestCase
              ->shouldReceive('search')
              ->once();
     }
+
+    protected function shouldSearchAllCategories(Categories $categories): void
+    {
+        $this->repository()
+             ->shouldReceive('searchAll')
+             ->once()
+             ->andReturn($categories);
+    }
+
 
     /** @return CategoryRepository|MockInterface */
     protected function repository(): MockInterface

@@ -24,7 +24,7 @@ final class CategoriesGetAllController extends WebController
                 'section_title' => 'Categorias',
                 'section_subtitle' => 'Listado',
                 'description' => 'Myfinance Pagina de inicio',
-                'categories' => $categories->getCollection()
+                'categories' => $categories->toPrimitives()
             ]);
     }
 

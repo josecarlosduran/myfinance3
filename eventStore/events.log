@@ -248,3 +248,6 @@
 [2020-07-15T14:25:39.324624+00:00] test.INFO: Some info message ["TEST"] []
 [2020-07-15T14:25:39.349616+00:00] test.CRITICAL: Some critical message ["TEST"] []
 [2020-07-15T14:25:39.367120+00:00] test.WARNING: Some warning message ["TEST"] []
+[2020-07-15T15:45:44.091256+00:00] test.INFO: Some info message ["TEST"] []
+[2020-07-15T15:45:44.117124+00:00] test.CRITICAL: Some critical message ["TEST"] []
+[2020-07-15T15:45:44.133632+00:00] test.WARNING: Some warning message ["TEST"] []
