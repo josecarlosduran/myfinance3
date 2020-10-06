@@ -94,5 +94,7 @@ final class JWTAuthMiddleware
         $tokenData = $this->decryptedToken['data'];
         $event->getRequest()->attributes->set('authenticated_username', $tokenData->user);
         $event->getRequest()->attributes->set('authenticated_userRoles', $tokenData->roles);
+        $event->getRequest()->attributes->set('authenticated_userHash', $tokenData->userHash);
+
     }
 }

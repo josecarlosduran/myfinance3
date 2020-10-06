@@ -89,5 +89,10 @@ final class User extends AggregateRoot
         return $this->role;
     }
 
+    public function userHash(): UserHash
+    {
+        return new UserHash($this->username->value());
+    }
+
 
 }
