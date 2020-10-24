@@ -6,14 +6,15 @@ declare(strict_types=1);
 namespace Myfinance\Portal\Accounts\Application\Find;
 
 
-use Myfinance\Shared\Domain\Bus\Query\Query;
+use Myfinance\Shared\Domain\Bus\Query\HashedUserQuery;
 
-final class FindAccountQuery implements Query
+final class FindAccountQuery extends HashedUserQuery
 {
     private string $id;
 
-    public function __construct(string $id)
+    public function __construct(string $hashedUser, string $id)
     {
+        parent::__construct($hashedUser);
         $this->id = $id;
     }
 

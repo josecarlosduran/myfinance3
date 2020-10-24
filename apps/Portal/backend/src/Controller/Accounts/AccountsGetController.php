@@ -18,7 +18,7 @@ final class AccountsGetController extends ApiController
     public function __invoke(string $id, Request $request): Response
     {
         /** @var AccountFinderResponse $response */
-        $response = $this->ask(new FindAccountQuery($id));
+        $response = $this->ask(new FindAccountQuery($this->extractHashedUserFromRequest($request), $id));
 
         return ApiResponse::create($response->toPrimitives())->format();
 

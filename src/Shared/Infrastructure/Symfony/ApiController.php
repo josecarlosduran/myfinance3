@@ -9,6 +9,7 @@ use Myfinance\Shared\Domain\Bus\Command\CommandBus;
 use Myfinance\Shared\Domain\Bus\Query\Query;
 use Myfinance\Shared\Domain\Bus\Query\QueryBus;
 use Myfinance\Shared\Domain\Bus\Query\Response;
+use Symfony\Component\HttpFoundation\Request;
 use function Lambdish\Phunctional\each;
 
 abstract class ApiController
@@ -46,5 +47,10 @@ abstract class ApiController
         return function ($httpCode, $exception): void {
             $this->exceptionHandler->register($exception, $httpCode);
         };
+    }
+
+    protected function extractHashedUserFromRequest(Request $request): ?string
+    {
+        return $request->attributes->get('authenticated_userHash');
     }
 }

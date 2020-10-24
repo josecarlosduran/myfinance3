@@ -18,7 +18,8 @@ final class AccountsGetAllController extends ApiController
     public function __invoke(Request $request): JsonResponse
     {
         /** @var AllAccountsSearcherResponse $response */
-        $response = $this->ask(new SearchAllAccountsQuery());
+
+        $response = $this->ask(new SearchAllAccountsQuery($this->extractHashedUserFromRequest($request)));
         return ApiResponse::create($response->toPrimitives())->format();
 
     }
