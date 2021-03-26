@@ -7,6 +7,7 @@ namespace Myfinance\Portal\Categories\Application\SearchAll;
 
 
 use Myfinance\Portal\Categories\Domain\Category;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\Bus\Query\QueryHandler;
 use function Lambdish\Phunctional\map;
 
@@ -22,9 +23,9 @@ final class SearchAllCategoryQueryHandler implements QueryHandler
 
     public function __invoke(SearchAllCategoryQuery $query): AllCategoriesSearcherResponse
     {
+        $tenant = new Tenant($query->tenant());
 
-
-        $categories = $this->searcher->__invoke();
+        $categories = $this->searcher->__invoke($tenant);
 
         $elements = $categories->getIterator()->getArrayCopy();
 

@@ -18,7 +18,7 @@ final class CategoriesGetController extends ApiController
     public function __invoke(string $id, Request $request): Response
     {
         /** @var CategoryFinderResponse $response */
-        $response = $this->ask(new FindCategoryQuery($id));
+        $response = $this->ask(new FindCategoryQuery($this->extractUserNameFromRequest($request), $id));
 
         return ApiResponse::create($response->toPrimitives())->format();
 

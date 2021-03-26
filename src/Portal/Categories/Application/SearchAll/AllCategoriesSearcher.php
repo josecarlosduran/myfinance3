@@ -8,6 +8,7 @@ namespace Myfinance\Portal\Categories\Application\SearchAll;
 
 use Myfinance\Portal\Categories\Domain\Categories;
 use Myfinance\Portal\Categories\Domain\CategoryRepository;
+use Myfinance\Portal\Users\Domain\Tenant;
 
 final class AllCategoriesSearcher
 {
@@ -20,9 +21,9 @@ final class AllCategoriesSearcher
         $this->repository = $repository;
     }
 
-    public function __invoke(): Categories
+    public function __invoke(Tenant $tenant): Categories
     {
-        return $this->repository->searchAll();
+        return $this->repository->searchAll($tenant);
 
     }
 

@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Myfinance\Shared\Domain\Bus\Command;
 
 
-abstract class AuthenticatedUserCommand implements Command
+abstract class MultiTenantCommand implements Command
 {
     private string $userName;
 

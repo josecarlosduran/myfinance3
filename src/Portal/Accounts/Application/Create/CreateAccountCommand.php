@@ -6,9 +6,9 @@ declare(strict_types=1);
 namespace Myfinance\Portal\Accounts\Application\Create;
 
 
-use Myfinance\Shared\Domain\Bus\Command\AuthenticatedUserCommand;
+use Myfinance\Shared\Domain\Bus\Command\MultiTenantCommand;
 
-final class CreateAccountCommand extends AuthenticatedUserCommand
+final class CreateAccountCommand extends MultiTenantCommand
 {
 
     private string $id;

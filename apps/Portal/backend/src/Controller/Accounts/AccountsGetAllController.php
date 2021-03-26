@@ -6,7 +6,6 @@ namespace Myfinance\Apps\Portal\Backend\Controller\Accounts;
 
 use Myfinance\Portal\Accounts\Application\SearchAll\AllAccountsSearcherResponse;
 use Myfinance\Portal\Accounts\Application\SearchAll\SearchAllAccountsQuery;
-use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\ApiResponse\ApiResponse;
 use Myfinance\Shared\Infrastructure\Symfony\ApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,7 +19,7 @@ final class AccountsGetAllController extends ApiController
     {
         /** @var AllAccountsSearcherResponse $response */
 
-        $response = $this->ask(new SearchAllAccountsQuery(new Tenant($this->extractUserNameFromRequest($request))));
+        $response = $this->ask(new SearchAllAccountsQuery($this->extractUserNameFromRequest($request)));
         return ApiResponse::create($response->toPrimitives())->format();
 
     }

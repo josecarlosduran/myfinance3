@@ -8,6 +8,7 @@ use Myfinance\Portal\Categories\Domain\Categories;
 use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Portal\Categories\Domain\CategoryRepository;
 use Myfinance\Portal\Shared\Domain\Category\CategoryId;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 
 final class DoctrineCategoryRepository extends DoctrineRepository implements CategoryRepository
@@ -18,15 +19,15 @@ final class DoctrineCategoryRepository extends DoctrineRepository implements Cat
     }
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
-    public function search(CategoryId $id): ?Category
+    public function search(Tenant $tenant, CategoryId $id): ?Category
     {
-        return $this->repository(Category::class)->find($id);
+        return $this->repository(Category::class)->findOneBy(['tenant.value' => $tenant->value(), 'id' => $id]);
     }
 
 
-    public function searchAll(): Categories
+    public function searchAll(Tenant $tenant): Categories
     {
-        $queryResult = $this->repository(Category::class)->findAll();
+        $queryResult = $this->repository(Category::class)->findBy(['tenant.value' => $tenant->value()]);
         return new Categories($queryResult);
     }
 }

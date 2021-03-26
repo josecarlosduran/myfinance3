@@ -7,6 +7,7 @@ namespace Myfinance\Portal\Categories\Application\Find;
 
 
 use Myfinance\Portal\Shared\Domain\Category\CategoryId;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\Bus\Query\QueryHandler;
 
 final class FindCategoryQueryHandler implements QueryHandler
@@ -22,8 +23,9 @@ final class FindCategoryQueryHandler implements QueryHandler
     public function __invoke(FindCategoryQuery $query)
     {
         $id = new CategoryId($query->id());
+        $tenant = new Tenant($query->tenant());
 
-        $category = $this->finder->__invoke($id);
+        $category = $this->finder->__invoke($tenant, $id);
 
         return new CategoryFinderResponse(
             $category->id()->value(),

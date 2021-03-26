@@ -6,7 +6,6 @@ namespace Myfinance\Apps\Portal\Backend\Controller\Accounts;
 
 use Myfinance\Portal\Accounts\Application\Find\AccountFinderResponse;
 use Myfinance\Portal\Accounts\Application\Find\FindAccountQuery;
-use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\ApiResponse\ApiResponse;
 use Myfinance\Shared\Infrastructure\Symfony\ApiController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +18,7 @@ final class AccountsGetController extends ApiController
     public function __invoke(string $id, Request $request): Response
     {
         /** @var AccountFinderResponse $response */
-        $response = $this->ask(new FindAccountQuery(new Tenant($this->extractUserNameFromRequest($request)), $id));
+        $response = $this->ask(new FindAccountQuery($this->extractUserNameFromRequest($request), $id));
 
         return ApiResponse::create($response->toPrimitives())->format();
 

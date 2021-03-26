@@ -37,7 +37,7 @@ final class PortalCategoriesContext extends PortalContext
     {
         return function (array $category) {
 
-            $this->repository->save(CategoryMother::withValues($category['id'], $category['description']));
+            $this->repository->save(CategoryMother::withValues($category['id'], $category['description'], 'test-user'));
         };
     }
 

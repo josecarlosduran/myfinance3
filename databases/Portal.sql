@@ -141,6 +141,7 @@ CREATE TABLE `categories`
 (
     `id`          varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+    `tenant` varchar(40) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8

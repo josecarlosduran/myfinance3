@@ -1,7 +1,7 @@
 categories_put:
   path: /categories/{id}
   controller: Myfinance\Apps\Portal\Backend\Controller\Categories\CategoriesPutController
-  defaults: { auth: false}
+  defaults: { auth: true, roles: ROLE_USER}
   methods:  [PUT]
 
 categories_get:

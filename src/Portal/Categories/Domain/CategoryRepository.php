@@ -6,12 +6,13 @@ namespace Myfinance\Portal\Categories\Domain;
 
 
 use Myfinance\Portal\Shared\Domain\Category\CategoryId;
+use Myfinance\Portal\Users\Domain\Tenant;
 
 interface CategoryRepository
 {
     public function save(Category $category): void;
 
-    public function search(CategoryId $id): ?Category;
+    public function search(Tenant $tenant, CategoryId $id): ?Category;
 
-    public function searchAll(): Categories;
+    public function searchAll(Tenant $tenant): Categories;
 }

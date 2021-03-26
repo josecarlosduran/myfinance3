@@ -7,6 +7,7 @@ namespace Myfinance\Portal\Accounts\Application\Find;
 
 
 use Myfinance\Portal\Accounts\Domain\AccountId;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\Bus\Query\QueryHandler;
 
 final class FindAccountQueryHandler implements QueryHandler
@@ -22,8 +23,8 @@ final class FindAccountQueryHandler implements QueryHandler
     public function __invoke(FindAccountQuery $query)
     {
         $id = new AccountId($query->id());
-
-        $account = $this->finder->__invoke($query->hashedUser(), $id);
+        $tenant = new Tenant($query->tenant());
+        $account = $this->finder->__invoke($tenant, $id);
 
         return new AccountFinderResponse(
             $account->id()->value(),

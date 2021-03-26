@@ -6,9 +6,9 @@ declare(strict_types=1);
 namespace Myfinance\Portal\Categories\Application\SearchAll;
 
 
-use Myfinance\Shared\Domain\Bus\Query\Query;
+use Myfinance\Shared\Domain\Bus\Query\MultiTenantQuery;
 
-final class SearchAllCategoryQuery implements Query
+final class SearchAllCategoryQuery extends MultiTenantQuery
 {
 
 }

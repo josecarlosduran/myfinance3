@@ -18,10 +18,9 @@ final class CategoriesGetAllController extends ApiController
     public function __invoke(Request $request): JsonResponse
     {
         /** @var AllCategoriesSearcherResponse $response */
-        $response = $this->ask(new SearchAllCategoryQuery());
+        $response = $this->ask(new SearchAllCategoryQuery($this->extractUserNameFromRequest($request)));
 
         return ApiResponse::create($response->toPrimitives())->format();
-
     }
 
     protected function exceptions(): array

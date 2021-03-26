@@ -49,7 +49,7 @@ final class CreateAccountCommandMother
     public static function random(): CreateAccountCommand
     {
         return self::create(
-            UsernameMother::random(),
+            UsernameMother::test(),
             AccountIdMother::random(),
             AccountDescriptionMother::random(),
             AccountIbanMother::random(),
@@ -60,7 +60,7 @@ final class CreateAccountCommandMother
     public static function withIncorrectIban(): CreateAccountCommand
     {
         return self::create(
-            UsernameMother::random(),
+            UsernameMother::test(),
             AccountIdMother::random(),
             AccountDescriptionMother::random(),
             AccountIbanMother::incorrect(),

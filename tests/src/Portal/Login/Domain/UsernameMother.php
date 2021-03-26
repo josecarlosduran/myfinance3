@@ -21,5 +21,10 @@ final class UsernameMother
         return self::create(WordMother::random());
     }
 
+    public static function test(): Username
+    {
+        return self::create('test-user');
+    }
+
 
 }

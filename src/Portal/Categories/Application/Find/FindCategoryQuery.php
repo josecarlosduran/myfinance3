@@ -6,14 +6,15 @@ declare(strict_types=1);
 namespace Myfinance\Portal\Categories\Application\Find;
 
 
-use Myfinance\Shared\Domain\Bus\Query\Query;
+use Myfinance\Shared\Domain\Bus\Query\MultiTenantQuery;
 
-final class FindCategoryQuery implements Query
+final class FindCategoryQuery extends MultiTenantQuery
 {
     private string $id;
 
-    public function __construct(string $id)
+    public function __construct(string $tenant, string $id)
     {
+        parent::__construct($tenant);
         $this->id = $id;
     }
 
@@ -21,6 +22,4 @@ final class FindCategoryQuery implements Query
     {
         return $this->id;
     }
-
-
 }

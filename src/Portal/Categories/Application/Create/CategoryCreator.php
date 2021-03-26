@@ -9,6 +9,7 @@ use Myfinance\Portal\Categories\Domain\Category;
 use Myfinance\Portal\Categories\Domain\CategoryDescription;
 use Myfinance\Portal\Categories\Domain\CategoryRepository;
 use Myfinance\Portal\Shared\Domain\Category\CategoryId;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\Bus\Event\EventBus;
 
 final class CategoryCreator
@@ -23,10 +24,10 @@ final class CategoryCreator
         $this->bus        = $bus;
     }
 
-    public function __invoke(CategoryId $id, CategoryDescription $description): void
+    public function __invoke(Tenant $tenant, CategoryId $id, CategoryDescription $description): void
     {
 
-        $category = Category::create($id, $description);
+        $category = Category::create($id, $description, $tenant);
 
         $this->repository->save($category);
         $this->bus->publish(...$category->pullDomainEvents());

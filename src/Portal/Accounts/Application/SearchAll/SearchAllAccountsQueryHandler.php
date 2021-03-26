@@ -7,6 +7,7 @@ namespace Myfinance\Portal\Accounts\Application\SearchAll;
 
 
 use Myfinance\Portal\Accounts\Domain\Account;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\Bus\Query\QueryHandler;
 use function Lambdish\Phunctional\map;
 
@@ -21,7 +22,8 @@ final class SearchAllAccountsQueryHandler implements QueryHandler
 
     public function __invoke(SearchAllAccountsQuery $query): AllAccountsSearcherResponse
     {
-        $accounts = $this->searcher->__invoke($query->hashedUser());
+        $tenant = new Tenant($query->tenant());
+        $accounts = $this->searcher->__invoke($tenant);
         $elements = $accounts->getIterator()->getArrayCopy();
 
         return new AllAccountsSearcherResponse(map($this->toPrimitives(), $elements));

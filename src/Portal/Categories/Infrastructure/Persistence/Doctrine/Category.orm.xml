@@ -9,6 +9,8 @@
 
         <embedded name="description" class="Myfinance\Portal\Categories\Domain\CategoryDescription"
                   use-column-prefix="false"/>
+        <embedded name="tenant" class="Myfinance\Portal\Users\Domain\Tenant"
+                  use-column-prefix="false"/>
     </entity>
 
 </doctrine-mapping>

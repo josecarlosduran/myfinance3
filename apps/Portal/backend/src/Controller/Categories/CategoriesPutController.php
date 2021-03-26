@@ -17,8 +17,7 @@ final class CategoriesPutController extends ApiController
     public function __invoke(string $id, Request $request): Response
     {
         $description = $request->get('description');
-
-        $this->dispatch(new CreateCategoryCommand($id, $description));
+        $this->dispatch(new CreateCategoryCommand($this->extractUserNameFromRequest($request) , $id, $description));
         return ApiResponse::createEmpty(ApiResponse::HTTP_CREATED)->format();
     }
 
