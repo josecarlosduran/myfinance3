@@ -8,6 +8,7 @@ use Myfinance\Portal\Accounts\Domain\Account;
 use Myfinance\Portal\Accounts\Domain\AccountId;
 use Myfinance\Portal\Accounts\Domain\AccountRepository;
 use Myfinance\Portal\Accounts\Domain\Accounts;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 
 final class DoctrineAccountRepository extends DoctrineRepository implements AccountRepository
@@ -18,15 +19,15 @@ final class DoctrineAccountRepository extends DoctrineRepository implements Acco
     }
 
     /** @noinspection PhpIncompatibleReturnTypeInspection */
-    public function search(AccountId $id): ?Account
+    public function search(Tenant $tenant, AccountId $id): ?Account
     {
-        return $this->repository(Account::class)->find($id);
+        return $this->repository(Account::class)->findOneBy(['tenant.value' => $tenant->value(), 'id' => $id]);
     }
 
 
-    public function searchAll(): Accounts
+    public function searchAll(Tenant $tenant): Accounts
     {
-        $queryResult = $this->repository(Account::class)->findAll();
+        $queryResult = $this->repository(Account::class)->findBy(['tenant.value' => $tenant->value()]);
         return new Accounts($queryResult);
     }
 }

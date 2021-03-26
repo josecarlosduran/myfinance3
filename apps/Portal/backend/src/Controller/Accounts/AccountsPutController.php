@@ -21,7 +21,7 @@ final class AccountsPutController extends ApiController
         $iban           = $request->request->get('iban');
         $savingsAccount = $request->request->get('savingsAccount');
 
-        $this->dispatch(new CreateAccountCommand($this->extractHashedUserFromRequest($request),
+        $this->dispatch(new CreateAccountCommand($this->extractUserNameFromRequest($request),
             $id,
             $description,
             $iban,

@@ -89,9 +89,9 @@ final class User extends AggregateRoot
         return $this->role;
     }
 
-    public function userHash(): UserHash
+    public function tenant(): Tenant
     {
-        return new UserHash($this->username->value());
+        return new Tenant($this->username->value());
     }
 
 

@@ -6,9 +6,10 @@ declare(strict_types=1);
 namespace Myfinance\Portal\Accounts\Domain;
 
 
-use Myfinance\Shared\Domain\Aggregate\AggregateRoot;
+use Myfinance\Portal\Users\Domain\Tenant;
+use Myfinance\Shared\Domain\Aggregate\MultiTenantAggregateRoot;
 
-final class Account extends AggregateRoot
+final class Account extends MultiTenantAggregateRoot
 {
 
     private AccountId               $id;
@@ -20,8 +21,10 @@ final class Account extends AggregateRoot
         AccountId $id,
         AccountDescription $description,
         AccountIban $iban,
-        AccountIsSavingsAccount $isSavingsAccount
+        AccountIsSavingsAccount $isSavingsAccount,
+        Tenant $tenant
     ) {
+        parent::__construct($tenant);
         $this->id               = $id;
         $this->description      = $description;
         $this->iban             = $iban;
@@ -32,9 +35,10 @@ final class Account extends AggregateRoot
         AccountId $id,
         AccountDescription $description,
         AccountIban $iban,
-        AccountIsSavingsAccount $isSavingsAccount
+        AccountIsSavingsAccount $isSavingsAccount,
+        Tenant $tenant
     ) {
-        $account = new self($id, $description, $iban, $isSavingsAccount);
+        $account = new self($id, $description, $iban, $isSavingsAccount, $tenant);
 
         $account->record(
             new AccountCreatedDomainEvent($id->value(),
@@ -66,6 +70,7 @@ final class Account extends AggregateRoot
         return $this->isSavingsAccount;
     }
 
+
     public function toPrimitives(): array
     {
         return
@@ -74,7 +79,6 @@ final class Account extends AggregateRoot
                 'description'    => $this->description()->value(),
                 'iban'           => $this->iban()->value(),
                 'savingsAccount' => $this->isSavingsAccount()->value(),
-
             ];
     }
 

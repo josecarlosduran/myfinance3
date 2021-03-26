@@ -12,6 +12,7 @@ use Myfinance\Portal\Accounts\Domain\AccountIban;
 use Myfinance\Portal\Accounts\Domain\AccountId;
 use Myfinance\Portal\Accounts\Domain\AccountIsSavingsAccount;
 use Myfinance\Portal\Accounts\Domain\AccountRepository;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\Bus\Event\EventBus;
 
 final class AccountCreator
@@ -29,9 +30,10 @@ final class AccountCreator
         AccountId $id,
         AccountDescription $description,
         AccountIban $iban,
-        AccountIsSavingsAccount $isSavingsAccount
+        AccountIsSavingsAccount $isSavingsAccount,
+        Tenant $tenant
     ) {
-        $account = Account::create($id, $description, $iban, $isSavingsAccount);
+        $account = Account::create($id, $description, $iban, $isSavingsAccount, $tenant);
         $this->repository->save($account);
 
         $this->bus->publish(...$account->pullDomainEvents());

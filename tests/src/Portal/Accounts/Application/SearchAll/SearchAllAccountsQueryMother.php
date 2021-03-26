@@ -7,15 +7,15 @@ namespace Myfinance\Tests\Portal\Accounts\Application\SearchAll;
 
 
 use Myfinance\Portal\Accounts\Application\SearchAll\SearchAllAccountsQuery;
-use Myfinance\Tests\Portal\Login\Domain\UserHashMother;
+use Myfinance\Tests\Portal\Login\Domain\TenantMother;
 
 final class SearchAllAccountsQueryMother
 {
 
     public static function create(): SearchAllAccountsQuery
     {
-        $userHash = UserHashMother::test();
-        return new SearchAllAccountsQuery($userHash->value());
+        $tenant = TenantMother::test();
+        return new SearchAllAccountsQuery($tenant);
     }
 
 

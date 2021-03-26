@@ -8,7 +8,7 @@ namespace Myfinance\Portal\Users\Domain;
 
 use Myfinance\Shared\Domain\ValueObject\StringValueObject;
 
-final class UserHash extends StringValueObject
+final class Tenant extends StringValueObject
 {
     public function __construct(string $value)
     {

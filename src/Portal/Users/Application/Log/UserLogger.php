@@ -48,7 +48,6 @@ final class UserLogger
             [
                 'user' => $user->username()->value(),
                 'roles' => $userRolesExpanded,
-                'userHash' => $user->userHash()->value()
             ]
         );
     }

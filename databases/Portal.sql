@@ -46,6 +46,7 @@ CREATE TABLE `accounts`
     `description`       varchar(24) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `iban`              varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `is_saving_account` tinyint(1)                                             NOT NULL,
+    `tenant`         varchar(40)                                            NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8

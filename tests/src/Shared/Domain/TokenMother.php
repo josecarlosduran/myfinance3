@@ -6,7 +6,6 @@ declare(strict_types=1);
 namespace Myfinance\Tests\Shared\Domain;
 
 
-use Myfinance\Portal\Users\Domain\UserHash;
 use Myfinance\Shared\Infrastructure\FireBaseJWT;
 
 final class TokenMother
@@ -36,11 +35,9 @@ final class TokenMother
 
     public static function withRoleUser()
     {
-        $userHash = new UserHash('test-user');
         $data     = [
             'user'     => 'test-user',
             'roles'    => ['ROLE_USER'],
-            'userHash' => $userHash->value()
         ];
         return self::create($data);
 

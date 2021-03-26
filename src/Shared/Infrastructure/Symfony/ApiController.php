@@ -49,8 +49,8 @@ abstract class ApiController
         };
     }
 
-    protected function extractHashedUserFromRequest(Request $request): ?string
+    protected function extractUserNameFromRequest(Request $request): ?string
     {
-        return $request->attributes->get('authenticated_userHash');
+        return $request->attributes->get('authenticated_username');
     }
 }

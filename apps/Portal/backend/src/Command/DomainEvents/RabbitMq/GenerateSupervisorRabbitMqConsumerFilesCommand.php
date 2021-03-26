@@ -11,14 +11,15 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 use function Lambdish\Phunctional\each;
 
 final class GenerateSupervisorRabbitMqConsumerFilesCommand extends Command
 {
-    private const EVENTS_TO_PROCESS_AT_TIME           = 200;
+    private const EVENTS_TO_PROCESS_AT_TIME = 200;
     private const NUMBERS_OF_PROCESSES_PER_SUBSCRIBER = 1;
-    private const SUPERVISOR_PATH                     = __DIR__ . '/../../../../../../../build/supervisor';
-    protected static                     $defaultName = 'myfinance:domain-events:rabbitmq:generate-supervisor-files';
+    private const SUPERVISOR_PATH = __DIR__ . '/../../../../../../../build/supervisor';
+    protected static $defaultName = 'myfinance:domain-events:rabbitmq:generate-supervisor-files';
     private DomainEventSubscriberLocator $locator;
 
     public function __construct(DomainEventSubscriberLocator $locator)

@@ -6,9 +6,9 @@ declare(strict_types=1);
 namespace Myfinance\Portal\Accounts\Application\Create;
 
 
-use Myfinance\Shared\Domain\Bus\Command\HashedUserCommand;
+use Myfinance\Shared\Domain\Bus\Command\AuthenticatedUserCommand;
 
-final class CreateAccountCommand extends HashedUserCommand
+final class CreateAccountCommand extends AuthenticatedUserCommand
 {
 
     private string $id;
@@ -16,9 +16,9 @@ final class CreateAccountCommand extends HashedUserCommand
     private string $iban;
     private bool   $savingsAccount;
 
-    public function __construct(string $hashedUser, string $id, string $description, string $iban, bool $savingsAccount)
+    public function __construct(string $userName, string $id, string $description, string $iban, bool $savingsAccount)
     {
-        parent::__construct($hashedUser);
+        parent::__construct($userName);
         $this->id             = $id;
         $this->description    = $description;
         $this->iban           = $iban;

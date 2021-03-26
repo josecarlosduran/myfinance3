@@ -21,8 +21,7 @@ final class SearchAllAccountsQueryHandler implements QueryHandler
 
     public function __invoke(SearchAllAccountsQuery $query): AllAccountsSearcherResponse
     {
-        $accounts = $this->searcher->__invoke();
-
+        $accounts = $this->searcher->__invoke($query->hashedUser());
         $elements = $accounts->getIterator()->getArrayCopy();
 
         return new AllAccountsSearcherResponse(map($this->toPrimitives(), $elements));

@@ -23,7 +23,7 @@ final class FindAccountQueryHandler implements QueryHandler
     {
         $id = new AccountId($query->id());
 
-        $account = $this->finder->__invoke($id);
+        $account = $this->finder->__invoke($query->hashedUser(), $id);
 
         return new AccountFinderResponse(
             $account->id()->value(),

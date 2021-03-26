@@ -13,6 +13,8 @@
                   use-column-prefix="false"/>
         <embedded name="isSavingsAccount" class="Myfinance\Portal\Accounts\Domain\AccountIsSavingsAccount"
                   use-column-prefix="false"/>
+        <embedded name="tenant" class="Myfinance\Portal\Users\Domain\Tenant"
+                  use-column-prefix="false"/>
     </entity>
 
 </doctrine-mapping>

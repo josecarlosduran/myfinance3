@@ -68,7 +68,7 @@ final class JWTAuthMiddleware
 
     private function ensureTokenFormat(array $tokenParts): void
     {
-        if (count($tokenParts) != 2 or $tokenParts[0] != 'Bearer') {
+        if (count($tokenParts) !== 2 || $tokenParts[0] !== 'Bearer') {
             throw new IncorrectAuthenticationTokenFormat();
         }
     }
@@ -94,7 +94,5 @@ final class JWTAuthMiddleware
         $tokenData = $this->decryptedToken['data'];
         $event->getRequest()->attributes->set('authenticated_username', $tokenData->user);
         $event->getRequest()->attributes->set('authenticated_userRoles', $tokenData->roles);
-        $event->getRequest()->attributes->set('authenticated_userHash', $tokenData->userHash);
-
     }
 }

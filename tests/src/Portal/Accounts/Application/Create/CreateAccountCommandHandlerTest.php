@@ -26,7 +26,6 @@ final class CreateAccountCommandHandlerTest extends AccountsModuleUnitTestCase
         $command                   = CreateAccountCommandMother::random();
         $account                   = AccountMother::fromCommand($command);
         $accountCreatedDomainEvent = AccountCreatedDomainEventMother::fromAccount($account);
-
         $this->shouldSave($account);
         $this->shouldPublishDomainEvent($accountCreatedDomainEvent);
 

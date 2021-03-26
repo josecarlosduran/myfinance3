@@ -10,6 +10,7 @@ use Myfinance\Portal\Accounts\Domain\AccountDescription;
 use Myfinance\Portal\Accounts\Domain\AccountIban;
 use Myfinance\Portal\Accounts\Domain\AccountId;
 use Myfinance\Portal\Accounts\Domain\AccountIsSavingsAccount;
+use Myfinance\Portal\Users\Domain\Tenant;
 use Myfinance\Shared\Domain\Bus\Command\CommandHandler;
 
 final class CreateAccountCommandHandler implements CommandHandler
@@ -24,11 +25,13 @@ final class CreateAccountCommandHandler implements CommandHandler
 
     public function __invoke(CreateAccountCommand $command)
     {
+
         $this->accountCreator->__invoke(
             new AccountId($command->id()),
             new AccountDescription($command->description()),
             new AccountIban($command->iban()),
-            new AccountIsSavingsAccount((bool)$command->savingsAccount())
+            new AccountIsSavingsAccount((bool)$command->savingsAccount()),
+            new Tenant($command->user())
         );
 
     }

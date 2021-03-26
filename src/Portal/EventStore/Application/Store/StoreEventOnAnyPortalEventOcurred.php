@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Myfinance\Portal\EventStore\Application\Store;
 
 
+use Myfinance\Portal\Accounts\Domain\AccountCreatedDomainEvent;
 use Myfinance\Portal\Categories\Domain\CategoryCreatedDomainEvent;
 use Myfinance\Portal\Users\Domain\UserLoggedDomainEvent;
 use Myfinance\Shared\Domain\Bus\Event\DomainEvent;
@@ -27,6 +28,7 @@ final class StoreEventOnAnyPortalEventOcurred implements DomainEventSubscriber
         return [
             CategoryCreatedDomainEvent::class,
             UserLoggedDomainEvent::class,
+            AccountCreatedDomainEvent::class
         ];
 
     }

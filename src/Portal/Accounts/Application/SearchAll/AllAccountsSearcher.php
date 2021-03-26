@@ -7,6 +7,7 @@ namespace Myfinance\Portal\Accounts\Application\SearchAll;
 
 
 use Myfinance\Portal\Accounts\Domain\AccountRepository;
+use Myfinance\Portal\Users\Domain\Tenant;
 
 final class AllAccountsSearcher
 {
@@ -18,9 +19,9 @@ final class AllAccountsSearcher
         $this->repository = $repository;
     }
 
-    public function __invoke()
+    public function __invoke(Tenant $tenant)
     {
-        return $this->repository->searchAll();
+        return $this->repository->searchAll($tenant);
 
     }
 

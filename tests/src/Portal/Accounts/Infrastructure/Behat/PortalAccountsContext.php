@@ -41,7 +41,8 @@ final class PortalAccountsContext extends PortalContext
             $this->repository->save(AccountMother::withValues($account['id'],
                 $account['description'],
                 $account['iban'],
-                $account['savingsAccount']));
+                $account['savingsAccount'],
+                'test-user'));
         };
     }
 
